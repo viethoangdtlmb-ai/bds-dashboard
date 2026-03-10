@@ -23,7 +23,8 @@ if sys.stdout.encoding != "utf-8":
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
     sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8", errors="replace")
 
-OUTPUT_DIR = Path(__file__).parent
+import os
+OUTPUT_DIR = Path(os.environ["BDS_DATA_DIR"]) if "BDS_DATA_DIR" in os.environ else Path(__file__).parent
 
 
 def _float(val):
@@ -911,7 +912,8 @@ def main():
     print(f"  → File: {output_path}")
 
     # Tự động mở trong trình duyệt
-    webbrowser.open(str(output_path))
+    if "BDS_DATA_DIR" not in os.environ:
+        webbrowser.open(str(output_path))
     print(f"\n✅ Đã mở biểu đồ trong trình duyệt!")
     print(f"   Nếu không tự mở, hãy double-click file: BIEU_DO_THI_TRUONG.html")
 
