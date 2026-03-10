@@ -17,6 +17,9 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -28,8 +31,11 @@ jobs:
 
       - name: Write config files from secrets
         run: |
-          echo '${{ secrets.GOOGLE_SHEETS_CONFIG }}' > data/google_sheets_config.json
-          echo '${{ secrets.TELEGRAM_CONFIG }}' > data/telegram_config.json
+          if [ -n "$SHEETS_CONFIG" ]; then echo "$SHEETS_CONFIG" > data/google_sheets_config.json; fi
+          if [ -n "$TELEGRAM_CONFIG" ]; then echo "$TELEGRAM_CONFIG" > data/telegram_config.json; fi
+        env:
+          SHEETS_CONFIG: ${{ secrets.GOOGLE_SHEETS_CONFIG }}
+          TELEGRAM_CONFIG: ${{ secrets.TELEGRAM_CONFIG }}
 
       - name: Backup CSV files
         run: |
@@ -39,9 +45,10 @@ jobs:
             [ -f "$f" ] && cp "$f" "data/backup/$(basename $f .csv)_${DATE}.csv"
           done
           # Keep only last 30 backups per file
-          cd data/backup && ls -t lich_su_chi_so_*.csv 2>/dev/null | tail -n +31 | xargs -r rm
-          ls -t lich_su_chi_so_phai_sinh_*.csv 2>/dev/null | tail -n +31 | xargs -r rm
-          ls -t du_lieu_tho_crawl_*.csv 2>/dev/null | tail -n +31 | xargs -r rm
+          cd data/backup
+          ls -t lich_su_chi_so_2*.csv 2>/dev/null | tail -n +31 | xargs -r rm
+          ls -t lich_su_chi_so_phai_sinh_2*.csv 2>/dev/null | tail -n +31 | xargs -r rm
+          ls -t du_lieu_tho_crawl_2*.csv 2>/dev/null | tail -n +31 | xargs -r rm
 
       - name: Run crawl
         run: python scripts/crawl_chi_so_thi_truong.py
@@ -69,8 +76,12 @@ jobs:
 
       - name: Commit and push
         run: |
-          git config user.name "GitHub Actions Bot"
-          git config user.email "actions@github.com"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
-          git diff --cached --quiet || git commit -m "Auto update $(date +'%Y-%m-%d %H:%M')"
-          git push
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Auto update $(date +'%Y-%m-%d %H:%M')"
+            git push
+          fi
