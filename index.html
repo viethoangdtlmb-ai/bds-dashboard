@@ -225,7 +225,7 @@
 <body>
     <div class="header">
         <h1>📊 BIỂU ĐỒ THỊ TRƯỜNG BĐS HÀ NỘI</h1>
-        <p>Nguồn: batdongsan.com.vn | Cập nhật: 10/03/2026 23:25 | 16 quận/huyện</p>
+        <p>Nguồn: batdongsan.com.vn | Cập nhật: 10/03/2026 23:44 | 16 quận/huyện</p>
     </div>
 
     <!-- Property type toggle -->
@@ -293,7 +293,7 @@
     </div>
 
     <div class="footer">
-        🤖 Tự động tạo bởi xem_bieu_do.py | Dữ liệu: batdongsan.com.vn | 10/03/2026 23:25
+        🤖 Tự động tạo bởi xem_bieu_do.py | Dữ liệu: batdongsan.com.vn | 10/03/2026 23:44
     </div>
 
     <script>
@@ -487,8 +487,14 @@
                     <canvas id="cmp2Radar"></canvas>
                 </div>
                 <div class="chart-container">
-                    <div class="chart-title">💰 Giá & Views theo thời gian</div>
+                    <div class="chart-title">🏢 Tin, Views, Views/Tin theo thời gian</div>
                     <div class="chart-wrapper"><canvas id="cmp2Lines"></canvas></div>
+                </div>
+            </div>
+            <div class="compare-grid">
+                <div class="chart-container">
+                    <div class="chart-title">💰 Giá (tr/m²) theo thời gian</div>
+                    <div class="chart-wrapper"><canvas id="cmp2Gia"></canvas></div>
                 </div>
             </div>
             <div class="compare-grid">
@@ -546,29 +552,35 @@
         });
 
 
-        // Line chart
+        // Tin, Views, Views/Tin chart
         new Chart(document.getElementById('cmp2Lines'), {
             type: DATES.length > 1 ? 'line' : 'bar',
             data: {
                 labels: DATES,
                 datasets: [
-                    { label: r1+' Giá', data: d1.gia, borderColor: '#2563eb', borderWidth: 2.5, tension: 0.3, yAxisID: 'y' },
-                    { label: r2+' Giá', data: d2.gia, borderColor: '#dc2626', borderWidth: 2.5, tension: 0.3, yAxisID: 'y' },
-                    { label: r1+' V/Tin', data: d1.views_tin, borderColor: '#60a5fa', borderWidth: 1.5, tension: 0.3, borderDash: [5,5], yAxisID: 'y1' },
-                    { label: r2+' V/Tin', data: d2.views_tin, borderColor: '#f87171', borderWidth: 1.5, tension: 0.3, borderDash: [5,5], yAxisID: 'y1' },
+                    { label: r1+' Tin', data: d1.tin, borderColor: '#2563eb', borderWidth: 2.5, tension: 0.3, yAxisID: 'y' },
+                    { label: r2+' Tin', data: d2.tin, borderColor: '#dc2626', borderWidth: 2.5, tension: 0.3, yAxisID: 'y' },
+                    { label: r1+' Views', data: d1.views, borderColor: '#60a5fa', borderWidth: 1.5, tension: 0.3, borderDash: [5,5], yAxisID: 'y' },
+                    { label: r2+' Views', data: d2.views, borderColor: '#f87171', borderWidth: 1.5, tension: 0.3, borderDash: [5,5], yAxisID: 'y' },
+                    { label: r1+' V/Tin', data: d1.views_tin, borderColor: '#22d3ee', borderWidth: 2, tension: 0.3, yAxisID: 'y1', pointStyle: 'rect' },
+                    { label: r2+' V/Tin', data: d2.views_tin, borderColor: '#fb923c', borderWidth: 2, tension: 0.3, yAxisID: 'y1', pointStyle: 'rect' },
                 ]
             },
             options: {
                 responsive: true,
+                maintainAspectRatio: false,
                 interaction: { mode: 'index', intersect: false },
-                plugins: { legend: { position: 'bottom', labels: { boxWidth: 14 } } },
+                plugins: { legend: { position: 'bottom', labels: { boxWidth: 14, padding: 10 } } },
                 scales: {
-                    y: { position: 'left', title: { display: true, text: 'Giá (tr/m²)' }, grid: { color: 'rgba(99,102,241,0.05)' } },
+                    y: { position: 'left', title: { display: true, text: 'Tin / Views' }, grid: { color: 'rgba(99,102,241,0.05)' } },
                     y1: { position: 'right', title: { display: true, text: 'Views/Tin' }, grid: { display: false } },
                     x: { grid: { display: false } }
                 }
             }
         });
+
+        // Giá chart
+        cmpLineChart('cmp2Gia', 'gia', 'Giá (tr/m²)', '#16a34a', '#e11d48');
 
         // Cycle & MFSI line charts
         function cmpLineChart(canvasId, dataKey, label, color1, color2, maxY) {
