@@ -23,8 +23,7 @@ if sys.stdout.encoding != "utf-8":
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
     sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8", errors="replace")
 
-import os
-OUTPUT_DIR = Path(os.environ["BDS_DATA_DIR"]) if "BDS_DATA_DIR" in os.environ else Path(__file__).parent
+OUTPUT_DIR = Path(__file__).parent
 
 
 def _float(val):
@@ -679,6 +678,26 @@ def generate_html(dates, regions, lookup, bt_dates=None, bt_regions=None, bt_loo
                     <div class="chart-title">💰 MFSI theo thời gian</div>
                     <div class="chart-wrapper"><canvas id="cmp2Mfsi"></canvas></div>
                 </div>
+            </div>
+            <div class="compare-grid">
+                <div class="chart-container">
+                    <div class="chart-title">🔥 Heat Score theo thời gian</div>
+                    <div class="chart-wrapper"><canvas id="cmp2Heat"></canvas></div>
+                </div>
+                <div class="chart-container">
+                    <div class="chart-title">💸 MFV theo thời gian</div>
+                    <div class="chart-wrapper"><canvas id="cmp2Mfv"></canvas></div>
+                </div>
+            </div>
+            <div class="compare-grid">
+                <div class="chart-container">
+                    <div class="chart-title">⚖️ Cung-Cầu theo thời gian</div>
+                    <div class="chart-wrapper"><canvas id="cmp2Cc"></canvas></div>
+                </div>
+                <div class="chart-container">
+                    <div class="chart-title">📉 % Cắt lỗ theo thời gian</div>
+                    <div class="chart-wrapper"><canvas id="cmp2CatLo"></canvas></div>
+                </div>
             </div>`;
 
         // Radar chart
@@ -730,7 +749,9 @@ def generate_html(dates, regions, lookup, bt_dates=None, bt_regions=None, bt_loo
         }});
 
         // Cycle & MFSI line charts
-        function cmpLineChart(canvasId, dataKey, label, color1, color2) {{
+        function cmpLineChart(canvasId, dataKey, label, color1, color2, maxY) {{
+            const yScale = {{ beginAtZero: true, grid: {{ color: 'rgba(99,102,241,0.05)' }}, ticks: {{ font: {{ size: 12 }} }}, title: {{ display: true, text: label, font: {{ size: 13 }}, color: '#94a3b8' }} }};
+            if (maxY) yScale.max = maxY;
             new Chart(document.getElementById(canvasId), {{
                 type: DATES.length > 1 ? 'line' : 'bar',
                 data: {{
@@ -745,14 +766,18 @@ def generate_html(dates, regions, lookup, bt_dates=None, bt_regions=None, bt_loo
                     maintainAspectRatio: false,
                     plugins: {{ legend: {{ position: 'bottom', labels: {{ font: {{ size: 14 }}, padding: 12 }} }} }},
                     scales: {{
-                        y: {{ beginAtZero: true, max: 100, grid: {{ color: 'rgba(99,102,241,0.05)' }}, ticks: {{ font: {{ size: 12 }} }}, title: {{ display: true, text: label, font: {{ size: 13 }}, color: '#94a3b8' }} }},
+                        y: yScale,
                         x: {{ grid: {{ display: false }}, ticks: {{ font: {{ size: 12 }} }} }}
                     }}
                 }}
             }});
         }}
-        cmpLineChart('cmp2Cycle', 'cycle', 'Cycle (0-100)', '#0891b2', '#ea580c');
-        cmpLineChart('cmp2Mfsi', 'mfsi', 'MFSI (0-100)', '#7c3aed', '#e11d48');
+        cmpLineChart('cmp2Cycle', 'cycle', 'Cycle (0-100)', '#0891b2', '#ea580c', 100);
+        cmpLineChart('cmp2Mfsi', 'mfsi', 'MFSI (0-100)', '#7c3aed', '#e11d48', 100);
+        cmpLineChart('cmp2Heat', 'heat', 'Heat Score', '#f59e0b', '#dc2626');
+        cmpLineChart('cmp2Mfv', 'mfv', 'MFV', '#10b981', '#8b5cf6');
+        cmpLineChart('cmp2Cc', 'cung_cau', 'Cung-Cầu', '#0ea5e9', '#f43f5e');
+        cmpLineChart('cmp2CatLo', 'cat_lo', 'Cắt lỗ (%)', '#f97316', '#6366f1');
     }}
 
     // --- Detail Charts ---
@@ -886,8 +911,7 @@ def main():
     print(f"  → File: {output_path}")
 
     # Tự động mở trong trình duyệt
-    if "BDS_DATA_DIR" not in os.environ:
-        webbrowser.open(str(output_path))
+    webbrowser.open(str(output_path))
     print(f"\n✅ Đã mở biểu đồ trong trình duyệt!")
     print(f"   Nếu không tự mở, hãy double-click file: BIEU_DO_THI_TRUONG.html")
 
