@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📊 Biểu đồ Thị trường BĐS Hà Nội</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+            color: #e2e8f0;
+            min-height: 100vh;
+            padding: 24px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 32px;
+            padding: 32px;
+            background: linear-gradient(135deg, rgba(37,99,235,0.15), rgba(147,51,234,0.15));
+            border-radius: 20px;
+            border: 1px solid rgba(99,102,241,0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .header h1 {
+            font-size: 36px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #60a5fa, #a78bfa, #f472b6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            color: #94a3b8;
+            font-size: 16px;
+        }
+
+        /* Summary Cards */
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .card {
+            background: linear-gradient(135deg, rgba(30,41,59,0.8), rgba(15,23,42,0.9));
+            border-radius: 16px;
+            padding: 20px;
+            border: 1px solid rgba(99,102,241,0.15);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            border-color: rgba(99,102,241,0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(99,102,241,0.15);
+        }
+
+        .card-name {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #f1f5f9;
+        }
+
+        .card-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .stat {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .stat-value.heat { color: #f97316; }
+        .stat-value.cycle { color: #22d3ee; }
+        .stat-value.views { color: #a78bfa; }
+        .stat-value.price { color: #4ade80; }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 12px 24px;
+            border: 1px solid rgba(99,102,241,0.2);
+            background: rgba(30,41,59,0.6);
+            color: #94a3b8;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .tab-btn:hover {
+            border-color: rgba(99,102,241,0.4);
+            color: #e2e8f0;
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
+            border-color: transparent;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        /* Charts */
+        .charts-section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            padding-left: 12px;
+            border-left: 4px solid #6366f1;
+        }
+
+        .chart-container {
+            background: rgba(30,41,59,0.6);
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid rgba(99,102,241,0.1);
+            margin-bottom: 20px;
+        }
+
+        .chart-container.hidden { display: none; }
+
+        .chart-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #cbd5e1;
+        }
+
+        canvas { max-height: 400px; }
+
+        /* Compare section */
+        .compare-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .compare-grid { grid-template-columns: 1fr; }
+            .summary-grid { grid-template-columns: 1fr; }
+            body { padding: 12px; }
+        }
+
+        .footer {
+            text-align: center;
+            padding: 24px;
+            color: #475569;
+            font-size: 12px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📊 BIỂU ĐỒ THỊ TRƯỜNG BĐS HÀ NỘI</h1>
+        <p>Nguồn: batdongsan.com.vn | Cập nhật: 10/03/2026 00:24 | 16 quận/huyện</p>
+    </div>
+
+    <!-- Summary Cards -->
+    <div class="section-title">🏆 Tổng quan (sắp xếp theo Heat Score)</div>
+    <div class="summary-grid" id="summaryGrid"></div>
+
+    <!-- Tab buttons -->
+    <div class="section-title">📈 Biểu đồ so sánh</div>
+    <div class="tabs">
+        <button class="tab-btn active" onclick="showTab('compare')">So sánh tất cả</button>
+        <button class="tab-btn" onclick="showTab('detail')">Chi tiết từng khu vực</button>
+    </div>
+
+    <!-- Compare Charts -->
+    <div id="tab-compare" class="charts-section">
+        <div class="compare-grid">
+            <div class="chart-container">
+                <div class="chart-title">🏢 Tổng tin đăng bán</div>
+                <canvas id="chartTin"></canvas>
+            </div>
+            <div class="chart-container">
+                <div class="chart-title">👁️ Tổng lượt xem</div>
+                <canvas id="chartViews"></canvas>
+            </div>
+            <div class="chart-container">
+                <div class="chart-title">💧 Views/Tin</div>
+                <canvas id="chartViewsTin"></canvas>
+            </div>
+            <div class="chart-container">
+                <div class="chart-title">💰 Giá bán TB (tr/m²)</div>
+                <canvas id="chartGia"></canvas>
+            </div>
+            <div class="chart-container">
+                <div class="chart-title">📊 Cycle Index</div>
+                <canvas id="chartCycle"></canvas>
+            </div>
+            <div class="chart-container">
+                <div class="chart-title">🔥 Heat Score</div>
+                <canvas id="chartHeat"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Detail Charts -->
+    <div id="tab-detail" class="charts-section" style="display:none">
+        <div class="tabs" id="regionTabs"></div>
+        <div id="detailCharts"></div>
+    </div>
+
+    <div class="footer">
+        🤖 Tự động tạo bởi xem_bieu_do.py | Dữ liệu: batdongsan.com.vn | 10/03/2026 00:24
+    </div>
+
+    <script>
+    const DATES = ["2026-03-09", "2026-03-10"];
+    const REGIONS = ["Ba Đình", "Bắc Từ Liêm", "Cầu Giấy", "Gia Lâm", "Hai Bà Trưng", "Hoài Đức", "Hoàng Mai", "Hà Đông", "Long Biên", "Nam Từ Liêm", "Thanh Trì", "Thanh Xuân", "Tây Hồ", "Đan Phượng", "Đông Anh", "Đống Đa"];
+    const DATA = {"Ba Đình": {"tin": [271.0, 269.0], "views": [2466.0, 2475.0], "views_tin": [9.1, 9.2], "gia": [139.1, 159.5], "cycle": [61.0, 50.0], "heat": [696.0, 310.0], "mfv": [1233.0, 0.0], "mfsi": [49.3, 17.4], "cung_cau": [1.82, 1.84], "cat_lo": [16.67, 12.5], "yoy": [0.0, 0.0]}, "Bắc Từ Liêm": {"tin": [1.0, 1.0], "views": [4.0, 4.0], "views_tin": [4.0, 4.0], "gia": [0.0, 0.0], "cycle": [54.0, 54.0], "heat": [222.0, 222.0], "mfv": [0.0, 0.0], "mfsi": [18.2, 18.2], "cung_cau": [0.8, 0.8], "cat_lo": [0.0, 0.0], "yoy": [15.0, 15.0]}, "Cầu Giấy": {"tin": [1937.0, 1942.0], "views": [5036.0, 5049.0], "views_tin": [2.6, 2.6], "gia": [122.3, 121.5], "cycle": [39.0, 33.0], "heat": [544.0, 153.0], "mfv": [2757.3, 0.0], "mfsi": [44.1, 13.8], "cung_cau": [0.52, 0.52], "cat_lo": [6.67, 3.33], "yoy": [9.5, 9.5]}, "Gia Lâm": {"tin": [1.0, 778.0], "views": [3.0, 2490.0], "views_tin": [3.2, 3.2], "gia": [0.0, 75.9], "cycle": [56.0, 38.0], "heat": [217.0, 167.0], "mfv": [0.0, 0.0], "mfsi": [17.6, 12.6], "cung_cau": [0.64, 0.64], "cat_lo": [0.0, 26.67], "yoy": [22.0, 22.0]}, "Hai Bà Trưng": {"tin": [1.0, 452.0], "views": [4.0, 1672.0], "views_tin": [4.2, 3.7], "gia": [0.0, 101.7], "cycle": [48.0, 28.0], "heat": [207.0, 141.0], "mfv": [0.0, 0.0], "mfsi": [18.4, 13.0], "cung_cau": [0.84, 0.74], "cat_lo": [0.0, 56.52], "yoy": [8.0, 8.0]}, "Hoài Đức": {"tin": [600.0, 601.0], "views": [5400.0, 5409.0], "views_tin": [9.0, 9.0], "gia": [77.1, 77.1], "cycle": [82.0, 70.0], "heat": [816.0, 416.0], "mfv": [2110.7, 0.0], "mfsi": [63.2, 17.2], "cung_cau": [1.8, 1.8], "cat_lo": [8.33, 8.33], "yoy": [34.0, 34.0]}, "Hoàng Mai": {"tin": [1566.0, 1.0], "views": [2975.0, 6.0], "views_tin": [1.9, 6.1], "gia": [79.3, 0.0], "cycle": [54.0, 72.0], "heat": [628.0, 378.0], "mfv": [2730.4, 0.0], "mfsi": [53.5, 19.9], "cung_cau": [0.38, 1.22], "cat_lo": [6.67, 0.0], "yoy": [44.9, 44.9]}, "Hà Đông": {"tin": [1882.0, 1881.0], "views": [3576.0, 3574.0], "views_tin": [1.9, 1.9], "gia": [80.7, 81.1], "cycle": [44.0, 32.0], "heat": [540.0, 140.0], "mfv": [1832.9, 0.0], "mfsi": [53.5, 11.5], "cung_cau": [0.38, 0.38], "cat_lo": [10.0, 10.0], "yoy": [18.3, 18.3]}, "Long Biên": {"tin": [1.0, 699.0], "views": [8.0, 3146.0], "views_tin": [7.5, 4.5], "gia": [0.0, 79.5], "cycle": [73.0, 47.0], "heat": [372.0, 255.0], "mfv": [0.0, 0.0], "mfsi": [20.0, 13.6], "cung_cau": [1.5, 0.9], "cat_lo": [0.0, 8.7], "yoy": [28.0, 28.0]}, "Nam Từ Liêm": {"tin": [2419.0, 1.0], "views": [2903.0, 4.0], "views_tin": [1.2, 4.5], "gia": [93.0, 0.0], "cycle": [37.0, 56.0], "heat": [484.0, 230.0], "mfv": [1632.8, 0.0], "mfsi": [53.0, 18.6], "cung_cau": [0.24, 0.9], "cat_lo": [16.67, 0.0], "yoy": [12.5, 12.5]}, "Thanh Trì": {"tin": [1.0, 412.0], "views": [10.0, 4202.0], "views_tin": [10.2, 10.2], "gia": [0.0, 78.9], "cycle": [88.0, 70.0], "heat": [502.0, 470.0], "mfv": [0.0, 0.0], "mfsi": [20.0, 18.2], "cung_cau": [2.04, 2.04], "cat_lo": [0.0, 13.04], "yoy": [44.1, 44.1]}, "Thanh Xuân": {"tin": [1414.0, 1406.0], "views": [2969.0, 2953.0], "views_tin": [2.1, 2.1], "gia": [97.2, 97.2], "cycle": [40.0, 28.0], "heat": [496.0, 96.0], "mfv": [1197.8, 0.0], "mfsi": [47.7, 11.7], "cung_cau": [0.42, 0.42], "cat_lo": [23.33, 23.33], "yoy": [10.0, 10.0]}, "Tây Hồ": {"tin": [1009.0, 1.0], "views": [1715.0, 4.0], "views_tin": [1.7, 3.8], "gia": [138.3, 0.0], "cycle": [50.0, 46.0], "heat": [528.0, 195.0], "mfv": [495.0, 0.0], "mfsi": [48.4, 18.0], "cung_cau": [0.34, 0.76], "cat_lo": [0.0, 0.0], "yoy": [8.2, 8.2]}, "Đan Phượng": {"tin": [1.0, 73.0], "views": [3.0, 204.0], "views_tin": [2.8, 2.8], "gia": [0.0, 64.2], "cycle": [59.0, 41.0], "heat": [289.0, 253.0], "mfv": [0.0, 0.0], "mfsi": [17.2, 12.2], "cung_cau": [0.56, 0.56], "cat_lo": [0.0, 14.29], "yoy": [50.0, 50.0]}, "Đông Anh": {"tin": [193.0, 193.0], "views": [2721.0, 2721.0], "views_tin": [14.1, 14.1], "gia": [83.2, 83.2], "cycle": [82.0, 70.0], "heat": [898.0, 498.0], "mfv": [819.6, 0.0], "mfsi": [62.0, 20.0], "cung_cau": [2.82, 2.82], "cat_lo": [13.64, 13.64], "yoy": [32.5, 32.5]}, "Đống Đa": {"tin": [1.0, 558.0], "views": [5.0, 2344.0], "views_tin": [5.0, 4.2], "gia": [0.0, 92.4], "cycle": [51.0, 34.0], "heat": [208.0, 158.0], "mfv": [0.0, 0.0], "mfsi": [19.0, 13.4], "cung_cau": [1.0, 0.84], "cat_lo": [0.0, 10.0], "yoy": [0.0, 0.0]}};
+    const SUMMARY = [{"name": "Đông Anh", "tin": 193.0, "views": 2721.0, "views_tin": 14.1, "gia": 83.2, "cycle": 70.0, "heat": 498.0, "mfsi": 20.0, "cat_lo": 13.64}, {"name": "Thanh Trì", "tin": 412.0, "views": 4202.0, "views_tin": 10.2, "gia": 78.9, "cycle": 70.0, "heat": 470.0, "mfsi": 18.2, "cat_lo": 13.04}, {"name": "Hoài Đức", "tin": 601.0, "views": 5409.0, "views_tin": 9.0, "gia": 77.1, "cycle": 70.0, "heat": 416.0, "mfsi": 17.2, "cat_lo": 8.33}, {"name": "Hoàng Mai", "tin": 1.0, "views": 6.0, "views_tin": 6.1, "gia": 0.0, "cycle": 72.0, "heat": 378.0, "mfsi": 19.9, "cat_lo": 0.0}, {"name": "Ba Đình", "tin": 269.0, "views": 2475.0, "views_tin": 9.2, "gia": 159.5, "cycle": 50.0, "heat": 310.0, "mfsi": 17.4, "cat_lo": 12.5}, {"name": "Long Biên", "tin": 699.0, "views": 3146.0, "views_tin": 4.5, "gia": 79.5, "cycle": 47.0, "heat": 255.0, "mfsi": 13.6, "cat_lo": 8.7}, {"name": "Đan Phượng", "tin": 73.0, "views": 204.0, "views_tin": 2.8, "gia": 64.2, "cycle": 41.0, "heat": 253.0, "mfsi": 12.2, "cat_lo": 14.29}, {"name": "Nam Từ Liêm", "tin": 1.0, "views": 4.0, "views_tin": 4.5, "gia": 0.0, "cycle": 56.0, "heat": 230.0, "mfsi": 18.6, "cat_lo": 0.0}, {"name": "Bắc Từ Liêm", "tin": 1.0, "views": 4.0, "views_tin": 4.0, "gia": 0.0, "cycle": 54.0, "heat": 222.0, "mfsi": 18.2, "cat_lo": 0.0}, {"name": "Tây Hồ", "tin": 1.0, "views": 4.0, "views_tin": 3.8, "gia": 0.0, "cycle": 46.0, "heat": 195.0, "mfsi": 18.0, "cat_lo": 0.0}, {"name": "Gia Lâm", "tin": 778.0, "views": 2490.0, "views_tin": 3.2, "gia": 75.9, "cycle": 38.0, "heat": 167.0, "mfsi": 12.6, "cat_lo": 26.67}, {"name": "Đống Đa", "tin": 558.0, "views": 2344.0, "views_tin": 4.2, "gia": 92.4, "cycle": 34.0, "heat": 158.0, "mfsi": 13.4, "cat_lo": 10.0}, {"name": "Cầu Giấy", "tin": 1942.0, "views": 5049.0, "views_tin": 2.6, "gia": 121.5, "cycle": 33.0, "heat": 153.0, "mfsi": 13.8, "cat_lo": 3.33}, {"name": "Hai Bà Trưng", "tin": 452.0, "views": 1672.0, "views_tin": 3.7, "gia": 101.7, "cycle": 28.0, "heat": 141.0, "mfsi": 13.0, "cat_lo": 56.52}, {"name": "Hà Đông", "tin": 1881.0, "views": 3574.0, "views_tin": 1.9, "gia": 81.1, "cycle": 32.0, "heat": 140.0, "mfsi": 11.5, "cat_lo": 10.0}, {"name": "Thanh Xuân", "tin": 1406.0, "views": 2953.0, "views_tin": 2.1, "gia": 97.2, "cycle": 28.0, "heat": 96.0, "mfsi": 11.7, "cat_lo": 23.33}];
+    const COLORS = ["#2563eb", "#dc2626", "#16a34a", "#ea580c", "#9333ea", "#0891b2", "#ca8a04", "#e11d48", "#4f46e5", "#059669", "#d97706", "#7c3aed", "#0d9488", "#be185d", "#6366f1"];
+
+    // Chart.js defaults
+    Chart.defaults.color = '#94a3b8';
+    Chart.defaults.borderColor = 'rgba(99,102,241,0.1)';
+    Chart.defaults.font.family = 'Inter';
+    Chart.defaults.font.size = 14;
+
+    // --- Summary Cards ---
+    const grid = document.getElementById('summaryGrid');
+    SUMMARY.forEach((s, i) => {
+        const cycleLabel = s.cycle >= 85 ? '🍂 Quá nóng' :
+                          s.cycle >= 60 ? '☀️ Đang tăng' :
+                          s.cycle >= 30 ? '🌱 Bắt đầu' : '🥶 Đáy';
+        grid.innerHTML += `
+            <div class="card" onclick="showRegionDetail('${s.name}')">
+                <div class="card-name">#${i+1} ${s.name}</div>
+                <div class="card-stats">
+                    <div class="stat">
+                        <span class="stat-label">Heat Score</span>
+                        <span class="stat-value heat">${s.heat?.toFixed(0) || 'N/A'}</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Cycle</span>
+                        <span class="stat-value cycle">${s.cycle?.toFixed(0) || 'N/A'} <span style="font-size:13px;font-weight:500;opacity:0.8">${cycleLabel}</span></span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Giá (tr/m²)</span>
+                        <span class="stat-value price">${s.gia?.toFixed(1) || 'N/A'}</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Views/Tin</span>
+                        <span class="stat-value views">${s.views_tin?.toFixed(1) || 'N/A'}</span>
+                    </div>
+                </div>
+            </div>`;
+    });
+
+    // --- Bar Charts (compare all regions) ---
+    function createBarChart(canvasId, dataKey, label, color) {
+        const ctx = document.getElementById(canvasId).getContext('2d');
+        const sortedRegions = [...SUMMARY];
+        const labels = sortedRegions.map(s => s.name);
+        const values = sortedRegions.map(s => {
+            const d = DATA[s.name];
+            const arr = d[dataKey];
+            return arr[arr.length - 1];
+        });
+
+        new Chart(ctx, {
+            type: DATES.length > 1 ? 'line' : 'bar',
+            data: DATES.length > 1 ? {
+                labels: DATES,
+                datasets: REGIONS.map((r, i) => ({
+                    label: r,
+                    data: DATA[r][dataKey],
+                    borderColor: COLORS[i % COLORS.length],
+                    backgroundColor: COLORS[i % COLORS.length] + '20',
+                    borderWidth: 2,
+                    tension: 0.3,
+                    pointRadius: 3,
+                }))
+            } : {
+                labels: labels,
+                datasets: [{
+                    label: label,
+                    data: values,
+                    backgroundColor: labels.map((_, i) => COLORS[i % COLORS.length] + '90'),
+                    borderColor: labels.map((_, i) => COLORS[i % COLORS.length]),
+                    borderWidth: 1.5,
+                    borderRadius: 6,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        display: DATES.length > 1,
+                        position: 'bottom',
+                        labels: { boxWidth: 14, padding: 12, font: { size: 14 } }
+                    },
+                },
+                scales: {
+                    y: { beginAtZero: dataKey !== 'gia', grid: { color: 'rgba(99,102,241,0.05)' }, ticks: { font: { size: 13 } }, title: { font: { size: 14 } } },
+                    x: { grid: { display: false }, ticks: { font: { size: 13 }, maxRotation: 45 } }
+                }
+            }
+        });
+    }
+
+    createBarChart('chartTin', 'tin', 'Tổng tin', '#2563eb');
+    createBarChart('chartViews', 'views', 'Tổng views', '#9333ea');
+    createBarChart('chartViewsTin', 'views_tin', 'Views/Tin', '#ca8a04');
+    createBarChart('chartGia', 'gia', 'Giá (tr/m²)', '#16a34a');
+    createBarChart('chartCycle', 'cycle', 'Cycle Index', '#0891b2');
+    createBarChart('chartHeat', 'heat', 'Heat Score', '#ea580c');
+
+    // --- Tabs ---
+    function showTab(tab) {
+        document.querySelectorAll('.tabs .tab-btn').forEach(b => b.classList.remove('active'));
+        event.target.classList.add('active');
+        document.getElementById('tab-compare').style.display = tab === 'compare' ? 'block' : 'none';
+        document.getElementById('tab-detail').style.display = tab === 'detail' ? 'block' : 'none';
+        if (tab === 'detail' && !document.getElementById('regionTabs').innerHTML) {
+            buildRegionTabs();
+            showRegionDetail(REGIONS[0]);
+        }
+    }
+
+    // --- Detail Charts ---
+    let detailChart = null;
+
+    function buildRegionTabs() {
+        const container = document.getElementById('regionTabs');
+        REGIONS.forEach((r, i) => {
+            container.innerHTML += `<button class="tab-btn ${i===0?'active':''}" onclick="showRegionDetail('${r}'); this.parentElement.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active')); this.classList.add('active');">${r}</button>`;
+        });
+    }
+
+    function showRegionDetail(region) {
+        const container = document.getElementById('detailCharts');
+        container.innerHTML = `
+            <div class="chart-container">
+                <div class="chart-title">📊 ${region} — Xu hướng theo thời gian</div>
+                <canvas id="detailCanvas" height="120"></canvas>
+            </div>
+            <div class="compare-grid">
+                <div class="chart-container">
+                    <div class="chart-title">🏢 Tổng tin & 👁️ Views</div>
+                    <canvas id="detailTinViews" height="100"></canvas>
+                </div>
+                <div class="chart-container">
+                    <div class="chart-title">🔥 Heat & Cycle & MFSI</div>
+                    <canvas id="detailIndicators" height="100"></canvas>
+                </div>
+            </div>`;
+
+        const d = DATA[region];
+
+        // Main chart: Giá + Views/Tin (dual axis)
+        new Chart(document.getElementById('detailCanvas'), {
+            type: DATES.length > 1 ? 'line' : 'bar',
+            data: {
+                labels: DATES,
+                datasets: [
+                    { label: 'Giá (tr/m²)', data: d.gia, borderColor: '#4ade80', backgroundColor: '#4ade8030', borderWidth: 2.5, tension: 0.3, yAxisID: 'y' },
+                    { label: 'Views/Tin', data: d.views_tin, borderColor: '#a78bfa', backgroundColor: '#a78bfa30', borderWidth: 2.5, tension: 0.3, yAxisID: 'y1' },
+                    { label: 'Cắt lỗ (%)', data: d.cat_lo, borderColor: '#f87171', backgroundColor: '#f8717130', borderWidth: 2, tension: 0.3, borderDash: [5,5], yAxisID: 'y1' },
+                ]
+            },
+            options: {
+                responsive: true,
+                interaction: { mode: 'index', intersect: false },
+                plugins: { legend: { position: 'bottom', labels: { boxWidth: 14, font: { size: 14 } } } },
+                scales: {
+                    y: { position: 'left', title: { display: true, text: 'Giá (tr/m²)' }, grid: { color: 'rgba(99,102,241,0.05)' } },
+                    y1: { position: 'right', title: { display: true, text: 'Views/Tin — Cắt lỗ (%)' }, grid: { display: false } },
+                    x: { grid: { display: false } }
+                }
+            }
+        });
+
+        // Tin & Views
+        new Chart(document.getElementById('detailTinViews'), {
+            type: DATES.length > 1 ? 'line' : 'bar',
+            data: {
+                labels: DATES,
+                datasets: [
+                    { label: 'Tổng tin', data: d.tin, borderColor: '#2563eb', backgroundColor: '#2563eb30', borderWidth: 2, tension: 0.3 },
+                    { label: 'Tổng views', data: d.views, borderColor: '#f97316', backgroundColor: '#f9731630', borderWidth: 2, tension: 0.3 },
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: { legend: { position: 'bottom' } },
+                scales: { y: { beginAtZero: true, grid: { color: 'rgba(99,102,241,0.05)' }, ticks: { font: { size: 13 } } }, x: { grid: { display: false }, ticks: { font: { size: 13 } } } }
+            }
+        });
+
+        // Indicators
+        new Chart(document.getElementById('detailIndicators'), {
+            type: DATES.length > 1 ? 'line' : 'bar',
+            data: {
+                labels: DATES,
+                datasets: [
+                    { label: 'Heat Score', data: d.heat, borderColor: '#f97316', backgroundColor: '#f9731630', borderWidth: 2, tension: 0.3 },
+                    { label: 'Cycle', data: d.cycle, borderColor: '#22d3ee', backgroundColor: '#22d3ee30', borderWidth: 2, tension: 0.3 },
+                    { label: 'MFSI', data: d.mfsi, borderColor: '#a78bfa', backgroundColor: '#a78bfa30', borderWidth: 2, tension: 0.3 },
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: { legend: { position: 'bottom' } },
+                scales: { y: { beginAtZero: true, grid: { color: 'rgba(99,102,241,0.05)' }, ticks: { font: { size: 13 } } }, x: { grid: { display: false }, ticks: { font: { size: 13 } } } }
+            }
+        });
+
+        // Switch to detail tab
+        document.getElementById('tab-compare').style.display = 'none';
+        document.getElementById('tab-detail').style.display = 'block';
+        document.querySelectorAll('.tabs')[0].querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tabs')[0].querySelectorAll('.tab-btn')[1].classList.add('active');
+        if (!document.getElementById('regionTabs').innerHTML) buildRegionTabs();
+        document.getElementById('regionTabs').querySelectorAll('.tab-btn').forEach(b => {
+            b.classList.remove('active');
+            if (b.textContent === region) b.classList.add('active');
+        });
+    }
+    </script>
+</body>
+</html>
