@@ -160,7 +160,16 @@
             font-weight: 600;
             margin-bottom: 16px;
             color: #cbd5e1;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
         }
+        .chart-btns { margin-left: auto; display: flex; gap: 6px; }
+        .chart-btns button {
+            padding: 4px 12px; border-radius: 6px; font-size: 12px; cursor: pointer; border: 1px solid rgba(99,102,241,0.3); background: rgba(30,41,59,0.8); color: #94a3b8;
+        }
+        .chart-btns button:hover { background: rgba(99,102,241,0.2); color: #e2e8f0; }
 
         canvas { width: 100% !important; }
         .chart-wrapper { position: relative; height: 500px; width: 100%; }
@@ -216,7 +225,7 @@
 <body>
     <div class="header">
         <h1>📊 BIỂU ĐỒ THỊ TRƯỜNG BĐS HÀ NỘI</h1>
-        <p>Nguồn: batdongsan.com.vn | Cập nhật: 10/03/2026 20:30 | 16 quận/huyện</p>
+        <p>Nguồn: batdongsan.com.vn | Cập nhật: 10/03/2026 20:32 | 16 quận/huyện</p>
     </div>
 
     <!-- Property type toggle -->
@@ -236,33 +245,29 @@
 
     <!-- Compare Charts -->
     <div id="tab-compare" class="charts-section">
-        <div style="margin-bottom:16px; display:flex; gap:12px; flex-wrap:wrap;">
-            <button onclick="toggleAllDatasets(false)" style="padding:10px 20px; border-radius:10px; background:rgba(239,68,68,0.2); color:#f87171; border:1px solid rgba(239,68,68,0.3); font-size:14px; cursor:pointer; font-weight:600;">❌ Bỏ chọn tất cả</button>
-            <button onclick="toggleAllDatasets(true)" style="padding:10px 20px; border-radius:10px; background:rgba(34,197,94,0.2); color:#4ade80; border:1px solid rgba(34,197,94,0.3); font-size:14px; cursor:pointer; font-weight:600;">✅ Chọn tất cả</button>
-        </div>
         <div class="compare-grid">
             <div class="chart-container">
-                <div class="chart-title">🏢 Tổng tin đăng bán</div>
+                <div class="chart-title">🏢 Tổng tin đăng bán <span class="chart-btns"><button onclick="toggleChart(0,false)">Bỏ chọn</button><button onclick="toggleChart(0,true)">Chọn lại</button></span></div>
                 <div class="chart-wrapper"><canvas id="chartTin"></canvas></div>
             </div>
             <div class="chart-container">
-                <div class="chart-title">👁️ Tổng lượt xem</div>
+                <div class="chart-title">👁️ Tổng lượt xem <span class="chart-btns"><button onclick="toggleChart(1,false)">Bỏ chọn</button><button onclick="toggleChart(1,true)">Chọn lại</button></span></div>
                 <div class="chart-wrapper"><canvas id="chartViews"></canvas></div>
             </div>
             <div class="chart-container">
-                <div class="chart-title">💧 Views/Tin</div>
+                <div class="chart-title">💧 Views/Tin <span class="chart-btns"><button onclick="toggleChart(2,false)">Bỏ chọn</button><button onclick="toggleChart(2,true)">Chọn lại</button></span></div>
                 <div class="chart-wrapper"><canvas id="chartViewsTin"></canvas></div>
             </div>
             <div class="chart-container">
-                <div class="chart-title">💰 Giá bán TB (tr/m²)</div>
+                <div class="chart-title">💰 Giá bán TB (tr/m²) <span class="chart-btns"><button onclick="toggleChart(3,false)">Bỏ chọn</button><button onclick="toggleChart(3,true)">Chọn lại</button></span></div>
                 <div class="chart-wrapper"><canvas id="chartGia"></canvas></div>
             </div>
             <div class="chart-container">
-                <div class="chart-title">📊 Cycle Index</div>
+                <div class="chart-title">📊 Cycle Index <span class="chart-btns"><button onclick="toggleChart(4,false)">Bỏ chọn</button><button onclick="toggleChart(4,true)">Chọn lại</button></span></div>
                 <div class="chart-wrapper"><canvas id="chartCycle"></canvas></div>
             </div>
             <div class="chart-container">
-                <div class="chart-title">🔥 Heat Score</div>
+                <div class="chart-title">🔥 Heat Score <span class="chart-btns"><button onclick="toggleChart(5,false)">Bỏ chọn</button><button onclick="toggleChart(5,true)">Chọn lại</button></span></div>
                 <div class="chart-wrapper"><canvas id="chartHeat"></canvas></div>
             </div>
         </div>
@@ -288,7 +293,7 @@
     </div>
 
     <div class="footer">
-        🤖 Tự động tạo bởi xem_bieu_do.py | Dữ liệu: batdongsan.com.vn | 10/03/2026 20:30
+        🤖 Tự động tạo bởi xem_bieu_do.py | Dữ liệu: batdongsan.com.vn | 10/03/2026 20:32
     </div>
 
     <script>
@@ -398,6 +403,15 @@
             });
             chart.update();
         });
+    }
+
+    function toggleChart(idx, show) {
+        const chart = allCharts[idx];
+        if (!chart) return;
+        chart.data.datasets.forEach((ds, i) => {
+            chart.setDatasetVisibility(i, show);
+        });
+        chart.update();
     }
 
     createBarChart('chartTin', 'tin', 'Tổng tin', '#2563eb');
