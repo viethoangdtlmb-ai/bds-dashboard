@@ -91,7 +91,9 @@ def load_history(filename="lich_su_chi_so_phai_sinh.csv"):
 
 def generate_html(dates, regions, lookup, bt_dates=None, bt_regions=None, bt_lookup=None):
     """Tạo HTML với biểu đồ Chart.js."""
-    timestamp = datetime.now().strftime("%d/%m/%Y %H:%M")
+    from datetime import timezone, timedelta
+    vn_tz = timezone(timedelta(hours=7))
+    timestamp = datetime.now(vn_tz).strftime("%d/%m/%Y %H:%M")
     has_bt = bt_regions and len(bt_regions) > 0
 
     # Prepare data for each region
