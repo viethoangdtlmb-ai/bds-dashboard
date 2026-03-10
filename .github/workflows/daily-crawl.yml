@@ -1,0 +1,64 @@
+name: Daily BDS Crawl & Dashboard Update
+
+on:
+  schedule:
+    # 15:00 UTC = 22:00 VN
+    - cron: '0 15 * * *'
+  workflow_dispatch:  # Allow manual trigger
+
+permissions:
+  contents: write
+
+jobs:
+  crawl-and-update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Write config files from secrets
+        run: |
+          echo '${{ secrets.GOOGLE_SHEETS_CONFIG }}' > data/google_sheets_config.json
+          echo '${{ secrets.TELEGRAM_CONFIG }}' > data/telegram_config.json
+
+      - name: Run crawl
+        run: python scripts/crawl_chi_so_thi_truong.py
+        env:
+          BDS_DATA_DIR: data
+
+      - name: Calculate indicators
+        run: python scripts/tinh_chi_so_phai_sinh.py
+        env:
+          BDS_DATA_DIR: data
+
+      - name: Generate dashboard HTML
+        run: python scripts/xem_bieu_do.py
+        env:
+          BDS_DATA_DIR: data
+
+      - name: Copy dashboard to root
+        run: cp data/BIEU_DO_THI_TRUONG.html index.html
+
+      - name: Send to Google Sheets
+        continue-on-error: true
+        run: python scripts/gui_google_sheets.py
+        env:
+          BDS_DATA_DIR: data
+
+      - name: Commit and push
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "actions@github.com"
+          git add -A
+          git diff --cached --quiet || git commit -m "Auto update $(date +'%Y-%m-%d %H:%M')"
+          git push
