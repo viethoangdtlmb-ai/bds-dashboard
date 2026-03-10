@@ -216,7 +216,7 @@
 <body>
     <div class="header">
         <h1>📊 BIỂU ĐỒ THỊ TRƯỜNG BĐS HÀ NỘI</h1>
-        <p>Nguồn: batdongsan.com.vn | Cập nhật: 10/03/2026 20:28 | 16 quận/huyện</p>
+        <p>Nguồn: batdongsan.com.vn | Cập nhật: 10/03/2026 20:30 | 16 quận/huyện</p>
     </div>
 
     <!-- Property type toggle -->
@@ -236,6 +236,10 @@
 
     <!-- Compare Charts -->
     <div id="tab-compare" class="charts-section">
+        <div style="margin-bottom:16px; display:flex; gap:12px; flex-wrap:wrap;">
+            <button onclick="toggleAllDatasets(false)" style="padding:10px 20px; border-radius:10px; background:rgba(239,68,68,0.2); color:#f87171; border:1px solid rgba(239,68,68,0.3); font-size:14px; cursor:pointer; font-weight:600;">❌ Bỏ chọn tất cả</button>
+            <button onclick="toggleAllDatasets(true)" style="padding:10px 20px; border-radius:10px; background:rgba(34,197,94,0.2); color:#4ade80; border:1px solid rgba(34,197,94,0.3); font-size:14px; cursor:pointer; font-weight:600;">✅ Chọn tất cả</button>
+        </div>
         <div class="compare-grid">
             <div class="chart-container">
                 <div class="chart-title">🏢 Tổng tin đăng bán</div>
@@ -284,7 +288,7 @@
     </div>
 
     <div class="footer">
-        🤖 Tự động tạo bởi xem_bieu_do.py | Dữ liệu: batdongsan.com.vn | 10/03/2026 20:28
+        🤖 Tự động tạo bởi xem_bieu_do.py | Dữ liệu: batdongsan.com.vn | 10/03/2026 20:30
     </div>
 
     <script>
@@ -332,6 +336,7 @@
             </div>`;
     });
 
+    const allCharts = [];
     // --- Bar Charts (compare all regions) ---
     function createBarChart(canvasId, dataKey, label, color) {
         const ctx = document.getElementById(canvasId).getContext('2d');
@@ -343,7 +348,7 @@
             return arr[arr.length - 1];
         });
 
-        new Chart(ctx, {
+        const chart = new Chart(ctx, {
             type: DATES.length > 1 ? 'line' : 'bar',
             data: DATES.length > 1 ? {
                 labels: DATES,
@@ -382,6 +387,16 @@
                     x: { grid: { display: false }, ticks: { font: { size: 14 }, maxRotation: 90, minRotation: 45, autoSkip: false } }
                 }
             }
+        });
+        allCharts.push(chart);
+    }
+
+    function toggleAllDatasets(show) {
+        allCharts.forEach(chart => {
+            chart.data.datasets.forEach((ds, i) => {
+                chart.setDatasetVisibility(i, show);
+            });
+            chart.update();
         });
     }
 
