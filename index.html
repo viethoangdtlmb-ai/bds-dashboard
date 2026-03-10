@@ -225,7 +225,7 @@
 <body>
     <div class="header">
         <h1>📊 BIỂU ĐỒ THỊ TRƯỜNG BĐS HÀ NỘI</h1>
-        <p>Nguồn: batdongsan.com.vn | Cập nhật: 10/03/2026 20:47 | 16 quận/huyện</p>
+        <p>Nguồn: batdongsan.com.vn | Cập nhật: 10/03/2026 20:52 | 16 quận/huyện</p>
     </div>
 
     <!-- Property type toggle -->
@@ -293,7 +293,7 @@
     </div>
 
     <div class="footer">
-        🤖 Tự động tạo bởi xem_bieu_do.py | Dữ liệu: batdongsan.com.vn | 10/03/2026 20:47
+        🤖 Tự động tạo bởi xem_bieu_do.py | Dữ liệu: batdongsan.com.vn | 10/03/2026 20:52
     </div>
 
     <script>
@@ -490,6 +490,16 @@
                     <div class="chart-title">💰 Giá & Views theo thời gian</div>
                     <div class="chart-wrapper"><canvas id="cmp2Lines"></canvas></div>
                 </div>
+            </div>
+            <div class="compare-grid">
+                <div class="chart-container">
+                    <div class="chart-title">📊 Cycle Index theo thời gian</div>
+                    <div class="chart-wrapper"><canvas id="cmp2Cycle"></canvas></div>
+                </div>
+                <div class="chart-container">
+                    <div class="chart-title">💰 MFSI theo thời gian</div>
+                    <div class="chart-wrapper"><canvas id="cmp2Mfsi"></canvas></div>
+                </div>
             </div>`;
 
         // Radar chart
@@ -539,6 +549,31 @@
                 }
             }
         });
+
+        // Cycle & MFSI line charts
+        function cmpLineChart(canvasId, dataKey, label, color1, color2) {
+            new Chart(document.getElementById(canvasId), {
+                type: DATES.length > 1 ? 'line' : 'bar',
+                data: {
+                    labels: DATES,
+                    datasets: [
+                        { label: r1, data: d1[dataKey], borderColor: color1, backgroundColor: color1+'20', borderWidth: 2.5, tension: 0.3, pointRadius: 4, fill: true },
+                        { label: r2, data: d2[dataKey], borderColor: color2, backgroundColor: color2+'20', borderWidth: 2.5, tension: 0.3, pointRadius: 4, fill: true },
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { position: 'bottom', labels: { font: { size: 14 }, padding: 12 } } },
+                    scales: {
+                        y: { beginAtZero: true, max: 100, grid: { color: 'rgba(99,102,241,0.05)' }, ticks: { font: { size: 12 } }, title: { display: true, text: label, font: { size: 13 }, color: '#94a3b8' } },
+                        x: { grid: { display: false }, ticks: { font: { size: 12 } } }
+                    }
+                }
+            });
+        }
+        cmpLineChart('cmp2Cycle', 'cycle', 'Cycle (0-100)', '#0891b2', '#ea580c');
+        cmpLineChart('cmp2Mfsi', 'mfsi', 'MFSI (0-100)', '#7c3aed', '#e11d48');
     }
 
     // --- Detail Charts ---
