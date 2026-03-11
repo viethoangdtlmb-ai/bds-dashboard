@@ -2,8 +2,8 @@ name: Daily BDS Crawl & Dashboard Update
 
 on:
   schedule:
-    # 15:00 UTC = 22:00 VN
-    - cron: '0 15 * * *'
+    # 14:00 UTC = 21:00 VN (dời sớm để tránh delay qua ngày)
+    - cron: '0 14 * * *'
   workflow_dispatch:  # Allow manual trigger
 
 permissions:
