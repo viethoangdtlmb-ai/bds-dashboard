@@ -85,5 +85,6 @@ jobs:
             echo "No changes to commit"
           else
             git commit -m "Auto update $(date +'%d/%m/%Y %H:%M') VN"
+            git pull --rebase origin main
             git push
           fi
