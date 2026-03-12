@@ -1,6 +1,6 @@
 # 🔥 CHỈ SỐ PHÁI SINH THỊ TRƯỜNG — BĐS HÀ NỘI
 
-> **Ngày tính:** 12/03/2026 22:31
+> **Ngày tính:** 12/03/2026 22:51
 > **Dữ liệu crawl:** batdongsan.com.vn | **Config (Views/YoY):** 2026-03-11
 > **Benchmark:** Nam Từ Liêm
 
@@ -10,22 +10,22 @@
 
 | # | Khu vực | Tổng tin | Tổng views | Views/Tin | Cycle | Giai đoạn | Heat | MFV | Cung-Cầu | Giá gap | MFSI | Giá (tr/m²) |
 |:-:|---------|:-------:|:----------:|:---------:|:-----:|-----------|:----:|:---:|:--------:|:-------:|:----:|:-----------:|
-| 1 | **Đống Đa** | 543 | 7,548 | 13.9 | 🟡 56 | 🌱 MÙA XUÂN (bắt đầu) | **485** | 81 | 2.78 🔥 Cầu >> Cung | -12% | 57.0 | 83.7 |
-| 2 | **Ba Đình** | 278 | 4,365 | 15.7 | 🟡 56 | 🌱 MÙA XUÂN (bắt đầu) | **483** | 46 | 3.14 🔥 Cầu >> Cung | +82% | 32.0 | 174.4 |
-| 3 | **Hai Bà Trưng** | 436 | 5,014 | 11.5 | 🟡 56 | 🌱 MÙA XUÂN (bắt đầu) | **420** | 54 | 2.30 🔥 Cầu >> Cung | +7% | 42.0 | 102.2 |
-| 4 | **Long Biên** | 702 | 4,703 | 6.7 | 🟢 65 | ☀️ MÙA HÈ (đang tăng) | **396** | 60 | 1.34 ✅ Cầu > Cung | -15% | 57.9 | 81.6 |
-| 5 | **Hoàng Mai** | 1,617 | 5,821 | 3.6 | 🟡 57 | 🌱 MÙA XUÂN (bắt đầu) | **375** | 84 | 0.72 🟡 Cân bằng | -19% | 64.1 | 77.9 |
-| 6 | **Đông Anh** | 205 | 1,435 | 7.0 | 🟢 61 | ☀️ MÙA HÈ (đang tăng) | **352** | 19 | 1.40 ✅ Cầu > Cung | +8% | 37.5 | 103.3 |
-| 7 | **Cầu Giấy** | 1,949 | 9,940 | 5.1 | 🟡 40 | 🌱 MÙA XUÂN (bắt đầu) | **324** | 109 | 1.02 ✅ Cầu > Cung | +14% | 34.6 | 109.0 |
-| 8 | **Thanh Trì** | 418 | 1,463 | 3.5 | 🟡 51 | 🌱 MÙA XUÂN (bắt đầu) | **294** | 21 | 0.70 🟡 Cân bằng | -20% | 59.2 | 76.6 |
-| 9 | **Đan Phượng** | 66 | 185 | 2.8 | 🟡 54 | 🌱 MÙA XUÂN (bắt đầu) | **279** | 3 | 0.56 ❌ Cung > Cầu | -25% | 61.2 | 71.7 |
-| 10 | **Hà Đông** | 1,869 | 5,607 | 3.0 | 🟡 53 | 🌱 MÙA XUÂN (bắt đầu) | **266** | 66 | 0.60 ❌ Cung > Cầu | -24% | 66.5 | 73.1 |
-| 11 | **Thanh Xuân** | 1,378 | 5,925 | 4.3 | 🟡 40 | 🌱 MÙA XUÂN (bắt đầu) | **248** | 65 | 0.86 🟡 Cân bằng | +4% | 33.5 | 99.2 |
-| 12 | **Hoài Đức** | 634 | 1,522 | 2.4 | 🟡 53 | 🌱 MÙA XUÂN (bắt đầu) | **238** | 20 | 0.48 ❌ Cung > Cầu | -14% | 51.4 | 81.9 |
-| 13 | **Tây Hồ** | 1,063 | 2,976 | 2.8 | 🟡 37 | 🌱 MÙA XUÂN (bắt đầu) | **187** | 32 | 0.56 ❌ Cung > Cầu | +36% | 27.9 | 129.6 |
-| 14 | **Bắc Từ Liêm** | 960 | 2,784 | 2.9 | 🟡 35 | 🌱 MÙA XUÂN (bắt đầu) | **169** | 32 | 0.58 ❌ Cung > Cầu | +3% | 31.4 | 98.1 |
-| 15 | **Nam Từ Liêm** | 2,511 | 4,520 | 1.8 | 🟡 30 | 🌱 MÙA XUÂN (bắt đầu) | **154** | 51 | 0.36 ❌ Cung > Cầu | -2% | 44.7 | 94.1 |
-| 16 | **Gia Lâm** | 792 | 1,030 | 1.3 | 🟡 33 | 🌱 MÙA XUÂN (bắt đầu) | **120** | 13 | 0.26 ❌ Cung > Cầu | -23% | 54.0 | 73.4 |
+| 1 | **Đông Anh** | 1 | 14 | 14.1 | 🔴 91 | 🍂 MÙA THU (quá nóng) | **533** | 0 | 2.82 🔥 Cầu >> Cung | — | 62.0 | 0.0 |
+| 2 | **Thanh Trì** | 1 | 10 | 10.2 | 🔴 91 | 🍂 MÙA THU (quá nóng) | **502** | 0 | 2.04 🔥 Cầu >> Cung | — | 62.0 | 0.0 |
+| 3 | **Hai Bà Trưng** | 436 | 5,014 | 11.5 | 🟡 56 | 🌱 MÙA XUÂN (bắt đầu) | **420** | 54 | 2.30 🔥 Cầu >> Cung | +15% | 32.0 | 102.2 |
+| 4 | **Hoàng Mai** | 1,617 | 5,821 | 3.6 | 🟡 57 | 🌱 MÙA XUÂN (bắt đầu) | **375** | 84 | 0.72 🟡 Cân bằng | -12% | 54.1 | 77.9 |
+| 5 | **Long Biên** | 1 | 8 | 7.5 | 🟢 76 | ☀️ MÙA HÈ (đang tăng) | **372** | 0 | 1.50 🔥 Cầu >> Cung | — | 58.2 | 0.0 |
+| 6 | **Đan Phượng** | 66 | 185 | 2.8 | 🟡 54 | 🌱 MÙA XUÂN (bắt đầu) | **279** | 3 | 0.56 ❌ Cung > Cầu | -19% | 61.2 | 71.7 |
+| 7 | **Hà Đông** | 1,871 | 5,613 | 3.0 | 🟡 45 | 🌱 MÙA XUÂN (bắt đầu) | **258** | 66 | 0.60 ❌ Cung > Cầu | -16% | 63.2 | 74.1 |
+| 8 | **Thanh Xuân** | 1 | 6 | 5.5 | 🟢 63 | ☀️ MÙA HÈ (đang tăng) | **254** | 0 | 1.10 ✅ Cầu > Cung | — | 55.2 | 0.0 |
+| 9 | **Hoài Đức** | 634 | 1,522 | 2.4 | 🟡 53 | 🌱 MÙA XUÂN (bắt đầu) | **238** | 20 | 0.48 ❌ Cung > Cầu | -8% | 51.4 | 81.9 |
+| 10 | **Cầu Giấy** | 1 | 5 | 5.0 | 🟡 54 | 🌱 MÙA XUÂN (bắt đầu) | **237** | 0 | 1.00 ✅ Cầu > Cung | — | 54.5 | 0.0 |
+| 11 | **Nam Từ Liêm** | 1 | 4 | 4.5 | 🟡 59 | 🌱 MÙA XUÂN (bắt đầu) | **230** | 0 | 0.90 🟡 Cân bằng | — | 53.8 | 0.0 |
+| 12 | **Đống Đa** | 1 | 5 | 4.8 | 🟡 53 | 🌱 MÙA XUÂN (bắt đầu) | **225** | 0 | 0.96 🟡 Cân bằng | — | 54.2 | 0.0 |
+| 13 | **Tây Hồ** | 1,063 | 2,976 | 2.8 | 🟡 37 | 🌱 MÙA XUÂN (bắt đầu) | **187** | 32 | 0.56 ❌ Cung > Cầu | +46% | 27.9 | 129.6 |
+| 14 | **Ba Đình** | 1 | 4 | 3.5 | 🟡 48 | 🌱 MÙA XUÂN (bắt đầu) | **179** | 0 | 0.70 🟡 Cân bằng | — | 52.2 | 0.0 |
+| 15 | **Bắc Từ Liêm** | 960 | 2,784 | 2.9 | 🟡 35 | 🌱 MÙA XUÂN (bắt đầu) | **169** | 32 | 0.58 ❌ Cung > Cầu | +11% | 31.4 | 98.1 |
+| 16 | **Gia Lâm** | 793 | 1,031 | 1.3 | 🟡 33 | 🌱 MÙA XUÂN (bắt đầu) | **120** | 13 | 0.26 ❌ Cung > Cầu | -17% | 54.0 | 73.4 |
 
 ---
 
@@ -33,51 +33,51 @@
 
 | Khu vực | Đèn | Cycle | MFSI | Khuyến nghị |
 |---------|:----:|:-----:|:----:|-------------|
-| **Đống Đa** | ⚫→🟢 | 56 | 57.0 | SỚM — cần kiên nhẫn 3-5 năm |
-| **Ba Đình** | ⚫→🟢 | 56 | 32.0 | SỚM — cần kiên nhẫn 3-5 năm |
-| **Hai Bà Trưng** | ⚫→🟢 | 56 | 42.0 | SỚM — cần kiên nhẫn 3-5 năm |
-| **Long Biên** | 🟢 | 65 | 57.9 | CƠ HỘI — đang tăng, dòng tiền vào |
-| **Hoàng Mai** | ⚫→🟢 | 57 | 64.1 | SỚM — cần kiên nhẫn 3-5 năm |
-| **Đông Anh** | 🟡 | 61 | 37.5 | CÂN NHẮC — tăng nhưng dòng tiền yếu |
-| **Cầu Giấy** | ⚫→🟢 | 40 | 34.6 | SỚM — cần kiên nhẫn 3-5 năm |
-| **Thanh Trì** | ⚫→🟢 | 51 | 59.2 | SỚM — cần kiên nhẫn 3-5 năm |
+| **Đông Anh** | 🔴 | 91 | 62.0 | THẬN TRỌNG — gần đỉnh, rủi ro cao |
+| **Thanh Trì** | 🔴 | 91 | 62.0 | THẬN TRỌNG — gần đỉnh, rủi ro cao |
+| **Hai Bà Trưng** | ⚫→🟢 | 56 | 32.0 | SỚM — cần kiên nhẫn 3-5 năm |
+| **Hoàng Mai** | ⚫→🟢 | 57 | 54.1 | SỚM — cần kiên nhẫn 3-5 năm |
+| **Long Biên** | 🟢 | 76 | 58.2 | CƠ HỘI — đang tăng, dòng tiền vào |
 | **Đan Phượng** | ⚫→🟢 | 54 | 61.2 | SỚM — cần kiên nhẫn 3-5 năm |
-| **Hà Đông** | ⚫→🟢 | 53 | 66.5 | SỚM — cần kiên nhẫn 3-5 năm |
-| **Thanh Xuân** | ⚫→🟢 | 40 | 33.5 | SỚM — cần kiên nhẫn 3-5 năm |
+| **Hà Đông** | ⚫→🟢 | 45 | 63.2 | SỚM — cần kiên nhẫn 3-5 năm |
+| **Thanh Xuân** | 🟢 | 63 | 55.2 | CƠ HỘI — đang tăng, dòng tiền vào |
 | **Hoài Đức** | ⚫→🟢 | 53 | 51.4 | SỚM — cần kiên nhẫn 3-5 năm |
+| **Cầu Giấy** | ⚫→🟢 | 54 | 54.5 | SỚM — cần kiên nhẫn 3-5 năm |
+| **Nam Từ Liêm** | ⚫→🟢 | 59 | 53.8 | SỚM — cần kiên nhẫn 3-5 năm |
+| **Đống Đa** | ⚫→🟢 | 53 | 54.2 | SỚM — cần kiên nhẫn 3-5 năm |
 | **Tây Hồ** | ⚫→🟢 | 37 | 27.9 | SỚM — cần kiên nhẫn 3-5 năm |
+| **Ba Đình** | ⚫→🟢 | 48 | 52.2 | SỚM — cần kiên nhẫn 3-5 năm |
 | **Bắc Từ Liêm** | ⚫→🟢 | 35 | 31.4 | SỚM — cần kiên nhẫn 3-5 năm |
-| **Nam Từ Liêm** | ⚫→🟢 | 30 | 44.7 | SỚM — cần kiên nhẫn 3-5 năm |
 | **Gia Lâm** | ⚫→🟢 | 33 | 54.0 | SỚM — cần kiên nhẫn 3-5 năm |
 
 ---
 
 ## III. TOP 3 KHU VỰC HẤP DẪN NHẤT
 
-### 1. Đống Đa — Heat Score 485
+### 1. Đông Anh — Heat Score 533
 
-- **Cycle:** 56 (🌱 MÙA XUÂN (bắt đầu))
-- **Tổng tin:** 543 | **Tổng views:** 7,548 | **Views/Tin:** 13.9
-- **MFV:** 81
-- **Giá:** 83.7 tr/m² | **Gap vs Nam Từ Liêm:** -12%
-- **Cung-Cầu:** 2.78 (🔥 Cầu >> Cung)
-- **Cắt lỗ:** 20.0% | **Yield:** 0.00%
+- **Cycle:** 91 (🍂 MÙA THU (quá nóng))
+- **Tổng tin:** 1 | **Tổng views:** 14 | **Views/Tin:** 14.1
+- **MFV:** 0
+- **Giá:** 0.0 tr/m² | **Gap vs Nam Từ Liêm:** N/A%
+- **Cung-Cầu:** 2.82 (🔥 Cầu >> Cung)
+- **Cắt lỗ:** 0.0% | **Yield:** 0.00%
 
-### 2. Ba Đình — Heat Score 483
+### 2. Thanh Trì — Heat Score 502
 
-- **Cycle:** 56 (🌱 MÙA XUÂN (bắt đầu))
-- **Tổng tin:** 278 | **Tổng views:** 4,365 | **Views/Tin:** 15.7
-- **MFV:** 46
-- **Giá:** 174.4 tr/m² | **Gap vs Nam Từ Liêm:** 82%
-- **Cung-Cầu:** 3.14 (🔥 Cầu >> Cung)
-- **Cắt lỗ:** 12.5% | **Yield:** 0.00%
+- **Cycle:** 91 (🍂 MÙA THU (quá nóng))
+- **Tổng tin:** 1 | **Tổng views:** 10 | **Views/Tin:** 10.2
+- **MFV:** 0
+- **Giá:** 0.0 tr/m² | **Gap vs Nam Từ Liêm:** N/A%
+- **Cung-Cầu:** 2.04 (🔥 Cầu >> Cung)
+- **Cắt lỗ:** 0.0% | **Yield:** 0.00%
 
 ### 3. Hai Bà Trưng — Heat Score 420
 
 - **Cycle:** 56 (🌱 MÙA XUÂN (bắt đầu))
 - **Tổng tin:** 436 | **Tổng views:** 5,014 | **Views/Tin:** 11.5
 - **MFV:** 54
-- **Giá:** 102.2 tr/m² | **Gap vs Nam Từ Liêm:** 7%
+- **Giá:** 102.2 tr/m² | **Gap vs Nam Từ Liêm:** 15%
 - **Cung-Cầu:** 2.30 (🔥 Cầu >> Cung)
 - **Cắt lỗ:** 50.0% | **Yield:** 0.00%
 
@@ -99,4 +99,4 @@
 
 ---
 
-📅 **Tính lúc:** 12/03/2026 22:31 | 🤖 **Script:** tinh_chi_so_phai_sinh.py
+📅 **Tính lúc:** 12/03/2026 22:51 | 🤖 **Script:** tinh_chi_so_phai_sinh.py
