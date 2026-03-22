@@ -1,7 +1,7 @@
 """
 Tổng hợp tuần — Tính median từ dữ liệu crawl hàng ngày
 Đọc lich_su_chi_so.csv → lọc dòng lỗi (0) → tính median 7 ngày → xuất dashboard_data.json
-Tính Δ Quan tâm + Δ Tin rao (so sánh tuần này vs tuần trước)
+Tính Δ Quan tâm + Δ Tin rao + Điểm Tiềm năng (chuẩn hóa)
 """
 import csv
 import json
@@ -37,7 +37,6 @@ def parse_float(val):
         return None
 
 def calc_period_stats(rows, target_dates):
-    """Calculate median views/tin and tin for each district over given dates"""
     district_data = defaultdict(lambda: {'tin': [], 'views': []})
     for row in rows:
         if row.get('Ngày') not in target_dates:
@@ -58,11 +57,37 @@ def calc_period_stats(rows, target_dates):
         result[name] = {'views_tin': vt, 'tin': tin_med}
     return result
 
+def normalize(values):
+    """Normalize values to 0-100 scale"""
+    if not values:
+        return []
+    mn, mx = min(values), max(values)
+    if mx == mn:
+        return [50] * len(values)
+    return [round((v - mn) / (mx - mn) * 100, 1) for v in values]
+
+def add_potential_scores(results):
+    """Add normalized potential score: equal weight views_tin, inverse bán xả, inverse giá"""
+    if not results:
+        return
+    
+    vt_vals = [d['views_tin'] for d in results]
+    cl_vals = [d['cat_lo'] for d in results]  # Lower is better → invert
+    gia_vals = [d['gia'] for d in results]    # Lower is better → invert
+
+    vt_norm = normalize(vt_vals)
+    cl_norm = normalize(cl_vals)
+    gia_norm = normalize(gia_vals)
+
+    for i, d in enumerate(results):
+        # Invert: 100 - normalized (so low bán xả = high score, low price = high score)
+        score = round((vt_norm[i] + (100 - cl_norm[i]) + (100 - gia_norm[i])) / 3, 1)
+        d['potential'] = score
+
 def calculate_median_data(rows, days=7):
     dates = sorted(set(row['Ngày'] for row in rows if row.get('Ngày')))
     recent_dates = dates[-days:] if len(dates) >= days else dates
 
-    # Previous period for Δ calculation
     prev_dates = []
     if len(dates) >= days * 2:
         prev_dates = dates[-(days*2):-days]
@@ -116,12 +141,10 @@ def calculate_median_data(rows, days=7):
         elif yoy_med > 15: cycle = 50 + (yoy_med - 15)
         elif yoy_med > 0: cycle = 30 + yoy_med
 
-        # Δ Quan tâm
         delta = None
         if name in prev_stats and prev_stats[name]['views_tin'] > 0 and views_tin > 0:
             delta = round((views_tin - prev_stats[name]['views_tin']) / prev_stats[name]['views_tin'] * 100, 1)
 
-        # Δ Tin rao (gia tốc nguồn cung)
         delta_tin = None
         if name in prev_stats and prev_stats[name]['tin'] > 0 and tin_med > 0:
             delta_tin = round((tin_med - prev_stats[name]['tin']) / prev_stats[name]['tin'] * 100, 1)
@@ -142,6 +165,9 @@ def calculate_median_data(rows, days=7):
                 'views': views_med,
             })
 
+    # Add normalized potential score
+    add_potential_scores(results)
+
     results.sort(key=lambda x: x['views_tin'], reverse=True)
     return results, recent_dates, len(prev_dates) > 0
 
@@ -158,7 +184,6 @@ def main():
     results, dates, has_delta = calculate_median_data(rows)
     print(f"  Tính median từ {len(dates)} ngày: {dates[0]} → {dates[-1]}")
     print(f"  Kết quả: {len(results)} quận/huyện")
-    print(f"  Δ Xu hướng: {'✅ Có dữ liệu' if has_delta else '⏳ Chưa đủ data (cần 14+ ngày)'}")
 
     output = {
         'updated': datetime.now().strftime('%d/%m/%Y %H:%M'),
@@ -178,11 +203,10 @@ def main():
         json.dump(output, f, ensure_ascii=False, indent=2)
     print(f"  ✅ Backup: {OUTPUT_JSON_BACKUP}")
 
-    print("\n  📋 Top 5 Độ quan tâm:")
-    for i, d in enumerate(results[:5]):
-        delta_str = f", Δ={d['delta']:+.1f}%" if d.get('delta') is not None else ""
-        delta_tin_str = f", ΔTin={d['delta_tin']:+.1f}%" if d.get('delta_tin') is not None else ""
-        print(f"    #{i+1} {d['name']}: Views/Tin={d['views_tin']}{delta_str}{delta_tin_str}")
+    print("\n  📋 Top tiềm năng:")
+    for d in sorted(results, key=lambda x: x.get('potential', 0), reverse=True)[:5]:
+        print(f"    {d['name']}: Tiềm năng={d.get('potential',0)}/100, "
+              f"QT={d['views_tin']}, BX={d['cat_lo']}%, Giá={d['gia']}")
 
 if __name__ == '__main__':
     main()
