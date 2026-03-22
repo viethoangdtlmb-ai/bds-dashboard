@@ -68,6 +68,15 @@ jobs:
       - name: Copy dashboard to root
         run: cp data/BIEU_DO_THI_TRUONG.html index.html
 
+      - name: Update median data for website
+        run: python scripts/tong_hop_tuan.py
+
+      - name: Deploy to GitHub Pages (docs/)
+        run: |
+          mkdir -p docs
+          cp docs/index.html docs/index.html 2>/dev/null || true
+          cp data/dashboard_data.json docs/data.json
+
       - name: Send to Google Sheets
         continue-on-error: true
         run: python scripts/gui_google_sheets.py
