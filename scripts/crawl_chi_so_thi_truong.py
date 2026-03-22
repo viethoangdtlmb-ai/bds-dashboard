@@ -70,7 +70,7 @@ KHU_VUC = {
     "Đan Phượng":    "dan-phuong",        #    68 tin
 }
 
-URL_BAN      = "https://batdongsan.com.vn/ban-can-ho-chung-cu-{slug}"
+URL_BAN      = "https://batdongsan.com.vn/nha-dat-ban-{slug}"
 URL_BIET_THU = "https://batdongsan.com.vn/ban-biet-thu-lien-ke-{slug}"
 
 MAX_PAGES = 1    # Chi crawl trang 1 (nhanh, an toan)
@@ -481,7 +481,7 @@ def yield_rating(y):
 
 def generate_markdown_report(all_results: dict, timestamp: str) -> str:
     lines = [
-        "# 📊 CHỈ SỐ THỊ TRƯỜNG CĂN HỘ HÀ NỘI",
+        "# 📊 CHỈ SỐ THỊ TRƯỜNG BĐS HÀ NỘI",
         "",
         f"> **Nguồn:** batdongsan.com.vn | **Ngày crawl:** {timestamp}",
         "> **Phương pháp:** Crawl trang 1 tự động — 15 quận/huyện",
