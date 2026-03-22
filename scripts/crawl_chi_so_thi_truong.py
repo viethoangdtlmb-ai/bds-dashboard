@@ -422,7 +422,7 @@ def calculate_indicators(ban_listings: list[dict],
     result["today_count"] = today_count
     result["pct_today"] = today_count / sample_size * 100 if sample_size else None
 
-    # 3. Gia ban TB / m2 (trimmed mean)
+    # 3. Gia ban TB / m2 (MEDIAN - khang outlier tot nhat)
     all_prices = [l["price_per_m2"] for l in ban_listings if l["price_per_m2"]]
     prices_m2 = [p for p in all_prices if 10 < p < 500]
 
@@ -439,9 +439,8 @@ def calculate_indicators(ban_listings: list[dict],
     if prices_m2:
         prices_m2.sort()
         n = len(prices_m2)
-        lo, hi = max(0, n // 10), n - max(0, n // 10)
-        trimmed = prices_m2[lo:hi] or prices_m2
-        result["avg_price_per_m2"] = sum(trimmed) / len(trimmed)
+        mid = n // 2
+        result["avg_price_per_m2"] = prices_m2[mid] if n % 2 == 1 else (prices_m2[mid-1] + prices_m2[mid]) / 2
 
     return result
 
@@ -630,9 +629,8 @@ def run_crawl(regions: dict, session) -> dict:
                 if cc_prices:
                     cc_prices.sort()
                     n = len(cc_prices)
-                    lo, hi = max(0, n // 10), n - max(0, n // 10)
-                    trimmed = cc_prices[lo:hi] or cc_prices
-                    gia_chung_cu = sum(trimmed) / len(trimmed)
+                    mid = n // 2
+                    gia_chung_cu = cc_prices[mid] if n % 2 == 1 else (cc_prices[mid-1] + cc_prices[mid]) / 2
                     print(f"  >> Gia chung cu: {gia_chung_cu:.1f} tr/m2 ({len(cc_prices)} tin)")
                 else:
                     print(f"  >> Khong co du lieu gia chung cu")
