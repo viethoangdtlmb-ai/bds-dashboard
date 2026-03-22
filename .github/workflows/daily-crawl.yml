@@ -2,9 +2,9 @@ name: Daily BDS Crawl & Dashboard Update
 
 on:
   schedule:
-    # 14:00 UTC = 21:00 VN (dời sớm để tránh delay qua ngày)
+    # 14:00 UTC = 21:00 VN
     - cron: '0 14 * * *'
-  workflow_dispatch:  # Allow manual trigger
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -15,11 +15,18 @@ jobs:
     timeout-minutes: 90
 
     steps:
-      - name: Checkout repo
+      - name: Checkout bds-dashboard
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
+
+      - name: Checkout hanoi-bds-insight
+        uses: actions/checkout@v4
+        with:
+          repository: viethoangdtlmb-ai/hanoi-bds-insight
+          token: ${{ secrets.GITHUB_TOKEN }}
+          path: hanoi-bds-insight
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -44,7 +51,6 @@ jobs:
           for f in data/lich_su_chi_so.csv data/lich_su_chi_so_phai_sinh.csv data/du_lieu_tho_crawl.csv; do
             [ -f "$f" ] && cp "$f" "data/backup/$(basename $f .csv)_${DATE}.csv"
           done
-          # Keep only last 30 backups per file
           cd data/backup
           ls -t lich_su_chi_so_2*.csv 2>/dev/null | tail -n +31 | xargs -r rm
           ls -t lich_su_chi_so_phai_sinh_2*.csv 2>/dev/null | tail -n +31 | xargs -r rm
@@ -68,14 +74,22 @@ jobs:
       - name: Copy dashboard to root
         run: cp data/BIEU_DO_THI_TRUONG.html index.html
 
-      - name: Update median data for website
+      - name: Update median data
         run: python scripts/tong_hop_tuan.py
 
-      - name: Deploy to GitHub Pages (docs/)
+      - name: Deploy to hanoi-bds-insight
         run: |
-          mkdir -p docs
-          cp docs/index.html docs/index.html 2>/dev/null || true
-          cp data/dashboard_data.json docs/data.json
+          cp data/dashboard_data.json hanoi-bds-insight/data.json
+          cd hanoi-bds-insight
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No changes to website"
+          else
+            git commit -m "Auto update data $(date +'%d/%m/%Y %H:%M') VN"
+            git push
+          fi
 
       - name: Send to Google Sheets
         continue-on-error: true
@@ -83,7 +97,7 @@ jobs:
         env:
           BDS_DATA_DIR: data
 
-      - name: Commit and push
+      - name: Commit and push bds-dashboard
         env:
           TZ: Asia/Ho_Chi_Minh
         run: |
