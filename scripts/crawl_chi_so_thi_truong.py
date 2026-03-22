@@ -71,6 +71,7 @@ KHU_VUC = {
 }
 
 URL_BAN      = "https://batdongsan.com.vn/nha-dat-ban-{slug}"
+URL_CHUNG_CU = "https://batdongsan.com.vn/ban-can-ho-chung-cu-{slug}"
 URL_BIET_THU = "https://batdongsan.com.vn/ban-biet-thu-lien-ke-{slug}"
 
 MAX_PAGES = 1    # Chi crawl trang 1 (nhanh, an toan)
@@ -546,6 +547,7 @@ def save_history(all_results: dict, filepath: Path):
         "Tin cắt lỗ", "% Cắt lỗ",
         "Đăng hôm nay", "% Hôm nay",
         "Giá bán TB (tr/m²)",
+        "Giá chung cư (tr/m²)",
         "% Tăng giá YoY",
     ]
     today = datetime.now().strftime("%Y-%m-%d")
@@ -563,6 +565,7 @@ def save_history(all_results: dict, filepath: Path):
             ind["today_count"],
             round(ind["pct_today"], 2) if ind["pct_today"] else "",
             round(ind["avg_price_per_m2"], 1) if ind["avg_price_per_m2"] else "",
+            ind.get("gia_chung_cu", ""),
             ind.get("price_yoy", ""),
         ])
 
@@ -612,6 +615,32 @@ def run_crawl(regions: dict, session) -> dict:
         indicators = calculate_indicators(ban, total_ban)
         indicators["views_ban"] = views_ban
         indicators["price_yoy"] = price_yoy
+
+        # Crawl thêm giá chung cư
+        gia_chung_cu = None
+        try:
+            cc_url = URL_CHUNG_CU.format(slug=slug)
+            print(f"  >> Crawl gia chung cu: {cc_url}")
+            pause = random.uniform(2, 4)
+            time.sleep(pause)
+            cc_html = fetch_page(cc_url, session)
+            if cc_html:
+                cc_listings = extract_listings(cc_html)
+                cc_prices = [l["price_per_m2"] for l in cc_listings if l.get("price_per_m2") and 10 < l["price_per_m2"] < 500]
+                if cc_prices:
+                    cc_prices.sort()
+                    n = len(cc_prices)
+                    lo, hi = max(0, n // 10), n - max(0, n // 10)
+                    trimmed = cc_prices[lo:hi] or cc_prices
+                    gia_chung_cu = sum(trimmed) / len(trimmed)
+                    print(f"  >> Gia chung cu: {gia_chung_cu:.1f} tr/m2 ({len(cc_prices)} tin)")
+                else:
+                    print(f"  >> Khong co du lieu gia chung cu")
+        except Exception as e:
+            print(f"  >> Loi crawl chung cu: {e}")
+
+        indicators["gia_chung_cu"] = round(gia_chung_cu, 1) if gia_chung_cu else None
+
         all_results[name] = {
             "indicators": indicators,
             "ban_listings": ban,
