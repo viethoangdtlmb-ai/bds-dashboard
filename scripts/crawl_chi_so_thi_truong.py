@@ -43,7 +43,7 @@ if sys.stdout.encoding != "utf-8":
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
     sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8", errors="replace")
 
-from curl_cffi import requests as curl_requests
+from curl_cffi import requests
 from bs4 import BeautifulSoup
 
 # ============================================================
@@ -84,18 +84,12 @@ DISTRESS_KEYWORDS = [
     "cần bán gấp", "cần tiền bán gấp", "chính chủ cần bán gấp",
 ]
 
-# Danh sach User-Agent xoay vong
+# Danh sach User-Agent xoay vong (cho Playwright)
 USER_AGENTS = [
-    "chrome110",
-    "chrome116",
-    "chrome119",
-    "chrome120",
-    "chrome123",
-    "chrome124",
-    "edge101",
-    "edge99",
-    "safari15_5",
-    "safari17_0",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36",
 ]
 
 import os
@@ -300,33 +294,53 @@ def extract_listings(html: str) -> list[dict]:
 
 
 # ============================================================
-# CRAWLER - dung curl_cffi gia lap TLS fingerprint cua Chrome
+# CRAWLER - dung Playwright (headless browser) bypass Cloudflare
 # ============================================================
 
 MAX_RETRIES = 3  # So lan thu lai khi gap loi
 DELAY_BETWEEN_PAGES = (2, 4)    # Delay giua cac trang (giay)
-DELAY_BETWEEN_REGIONS = (5, 10) # Delay giua cac khu vuc (giay) - giam vi chi 1 request/kv
+DELAY_BETWEEN_REGIONS = (5, 10) # Delay giua cac khu vuc (giay)
+CLOUDFLARE_WAIT = 15  # So giay doi Cloudflare challenge tu giai
+LISTING_SELECTORS = ".re__card-full-v3, .js__card, .re__card-info, .product-listing__item"
+
+
+# Removed simulate_human_activity because curl_cffi handles bypass at the protocol level.
 
 
 def fetch_page(url: str, session, retry: int = 0) -> str | None:
-    """Tai 1 trang va tra ve HTML string. Retry khi gap loi."""
-    # Xoay vong User-Agent moi request
-    impersonate = random.choice(USER_AGENTS)
+    """
+    Tai 1 trang va tra ve HTML string bang curl_cffi.
+    session o day la requests.Session(impersonate="chrome120").
+    """
     try:
-        resp = session.get(url, timeout=20, impersonate=impersonate)
-        if resp.status_code == 200:
-            return resp.text
-        elif resp.status_code == 403 and retry < MAX_RETRIES:
-            wait = random.uniform(10, 20)
-            print(f"    !! HTTP 403 - doi {wait:.0f}s roi thu lai ({retry+1}/{MAX_RETRIES})")
+        # De curl_cffi tu quan ly headers va UA thong qua impersonate
+        headers = {
+            "referer": "https://batdongsan.com.vn/",
+        }
+
+        response = session.get(url, headers=headers, timeout=30)
+        html = response.text
+        status = response.status_code
+
+        # Kiem tra tinh hop le cua du lieu (status != 200 hoac co text khoa chan)
+        is_blocked = status != 200 or "Just a moment" in html
+        is_empty = len(html) < 20000 
+        
+        if (is_blocked or is_empty) and retry < MAX_RETRIES:
+            reason = f"Cloudflare chan (Status: {status})" if is_blocked else "du lieu trong"
+            wait = random.uniform(15, 30)
+            print(f"    !! {reason} - doi {wait:.0f}s roi thu lai ({retry+1}/{MAX_RETRIES})")
             time.sleep(wait)
             return fetch_page(url, session, retry + 1)
-        else:
-            print(f"    !! HTTP {resp.status_code}")
+        elif is_blocked or is_empty:
+            print(f"    !! {('Cloudflare van chan' if is_blocked else 'Du lieu van trong')} sau {MAX_RETRIES} lan thu - Bo qua")
             return None
+
+        return html
+
     except Exception as e:
         if retry < MAX_RETRIES:
-            wait = random.uniform(5, 10)
+            wait = random.uniform(8, 15)
             print(f"    !! Error: {e} - doi {wait:.0f}s roi thu lai ({retry+1}/{MAX_RETRIES})")
             time.sleep(wait)
             return fetch_page(url, session, retry + 1)
@@ -816,9 +830,9 @@ def main():
             print("\n!! Khong co du lieu de gop.")
         return
 
-    # Tao session
-    session = curl_requests.Session()
-    print(f"\nUser-Agent: xoay vong {len(USER_AGENTS)} trinh duyet")
+    # Tao Session curl_cffi bypass Cloudflare
+    session = requests.Session(impersonate="chrome120")
+    print("\nEngine: curl_cffi (Impersonate Chrome 120) - TLS/JA3 Bypass ON")
 
     # --- Che do BATCH ---
     if args.batch > 0:
@@ -852,6 +866,9 @@ def main():
 
     all_results = run_crawl(KHU_VUC, session)
     output_results(all_results, timestamp)
+
+    # Dong Session
+    session.close()
 
     # --- BIET THU (neu co flag --biet-thu) ---
     if args.biet_thu:

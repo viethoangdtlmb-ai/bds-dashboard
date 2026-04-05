@@ -186,6 +186,53 @@ def calculate_median_data(rows, days=7):
 
     return results, recent_dates, has_delta, has_delta_gia
 
+def build_weekly_history(rows, max_weeks=12):
+    """Tạo lịch sử tuần cho biểu đồ xu hướng."""
+    dates = sorted(set(row['Ngày'] for row in rows if row.get('Ngày')))
+    if len(dates) < 2:
+        return {}
+
+    # Chia dates thành các tuần (7 ngày/tuần)
+    weeks = []
+    for i in range(0, len(dates), 7):
+        week_dates = dates[i:i+7]
+        if week_dates:
+            weeks.append(week_dates)
+
+    # Giới hạn max_weeks
+    weeks = weeks[-max_weeks:]
+
+    # Mỗi quận: danh sách giá trị theo tuần
+    district_history = defaultdict(lambda: {
+        'labels': [], 'gia': [], 'gia_cc': [], 'tin': [], 'views_tin': []
+    })
+
+    for week_dates in weeks:
+        label = week_dates[-1]  # Ngày cuối tuần
+        week_stats = calc_period_stats(rows, week_dates)
+
+        # Lấy thêm gia_cc
+        district_cc = defaultdict(list)
+        for row in rows:
+            if row.get('Ngày') not in week_dates:
+                continue
+            name = row.get('Khu vực', '').strip()
+            gia_cc = parse_float(row.get('Giá chung cư (tr/m²)'))
+            if name and gia_cc:
+                district_cc[name].append(gia_cc)
+
+        for name, stats in week_stats.items():
+            h = district_history[name]
+            h['labels'].append(label)
+            h['gia'].append(round(stats['gia'], 1) if stats['gia'] else None)
+            cc_vals = district_cc.get(name, [])
+            h['gia_cc'].append(round(statistics.median(cc_vals), 1) if cc_vals else None)
+            h['tin'].append(round(stats['tin'], 0) if stats['tin'] else None)
+            h['views_tin'].append(stats['views_tin'])
+
+    return dict(district_history)
+
+
 def main():
     print("📊 Tổng hợp dữ liệu tuần (Median)...")
     if not os.path.exists(CSV_FILE):
@@ -201,6 +248,10 @@ def main():
     print(f"  Δ Tuần: {'✅' if has_delta else '⏳ cần 14+ ngày'}")
     print(f"  Δ Giá tháng: {'✅' if has_delta_gia else '⏳ cần 30+ ngày'}")
 
+    # Build weekly history for time-series charts
+    history = build_weekly_history(rows)
+    print(f"  📈 Lịch sử: {len(history)} quận, {max(len(h['labels']) for h in history.values()) if history else 0} tuần")
+
     output = {
         'updated': datetime.now().strftime('%d/%m/%Y %H:%M'),
         'date_range': f"{dates[0]} → {dates[-1]}",
@@ -208,7 +259,8 @@ def main():
         'method': 'median',
         'has_delta': has_delta,
         'has_delta_gia': has_delta_gia,
-        'districts': results
+        'districts': results,
+        'history': history
     }
 
     os.makedirs(os.path.dirname(OUTPUT_JSON), exist_ok=True)
@@ -227,3 +279,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+

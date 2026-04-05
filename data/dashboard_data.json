@@ -1,5 +1,5 @@
 {
-  "updated": "23/03/2026 03:36",
+  "updated": "23/03/2026 19:33",
   "date_range": "2026-03-23 → 2026-03-23",
   "num_days": 1,
   "method": "median",
@@ -214,5 +214,6 @@
       "views": 18718.0,
       "potential": 39.0
     }
-  ]
+  ],
+  "history": {}
 }
