@@ -1,219 +1,540 @@
 {
-  "updated": "09/04/2026 19:40",
-  "date_range": "2026-03-23 → 2026-03-23",
-  "num_days": 1,
+  "updated": "09/04/2026 19:41",
+  "date_range": "2026-03-23 → 2026-04-09",
+  "num_days": 2,
   "method": "median",
   "has_delta": false,
   "has_delta_gia": false,
   "districts": [
     {
-      "name": "Ba Đình",
-      "gia": 238.3,
-      "gia_cc": null,
-      "heat": 7817.0,
-      "cycle": 50,
-      "views_tin": 11.0,
-      "delta": null,
-      "delta_tin": null,
-      "delta_gia": null,
-      "yoy": 0,
-      "cat_lo": 13.3,
-      "tin": 2165.0,
-      "views": 23879.0,
-      "potential": 55.5
-    },
-    {
       "name": "Hai Bà Trưng",
-      "gia": 153.5,
+      "gia": 137.7,
       "gia_cc": null,
-      "heat": 7779.0,
-      "cycle": 50,
-      "views_tin": 10.5,
+      "heat": 7644.0,
+      "cycle": 90,
+      "views_tin": 10.4,
       "delta": null,
       "delta_tin": null,
       "delta_gia": null,
-      "yoy": 0,
-      "cat_lo": 23.3,
-      "tin": 2266.0,
-      "views": 23719.0,
-      "potential": 61.1
+      "yoy": 98.2,
+      "cat_lo": 26.7,
+      "tin": 2246.0,
+      "views": 23290.0,
+      "potential": 58.6
     },
     {
-      "name": "Đống Đa",
-      "gia": 237.6,
+      "name": "Ba Đình",
+      "gia": 232.4,
       "gia_cc": null,
-      "heat": 10624.0,
-      "cycle": 50,
+      "heat": 7198.0,
+      "cycle": 90,
       "views_tin": 10.3,
       "delta": null,
       "delta_tin": null,
       "delta_gia": null,
-      "yoy": 0,
-      "cat_lo": 16.7,
-      "tin": 3179.0,
-      "views": 32608.0,
-      "potential": 48.1
+      "yoy": 169.3,
+      "cat_lo": 18.3,
+      "tin": 2130.5,
+      "views": 21885.0,
+      "potential": 50.8
+    },
+    {
+      "name": "Đống Đa",
+      "gia": 250.1,
+      "gia_cc": null,
+      "heat": 10655.0,
+      "cycle": 90,
+      "views_tin": 10.1,
+      "delta": null,
+      "delta_tin": null,
+      "delta_gia": null,
+      "yoy": 96.6,
+      "cat_lo": 18.3,
+      "tin": 3233.5,
+      "views": 32687.0,
+      "potential": 45.8
     },
     {
       "name": "Đông Anh",
-      "gia": 203.7,
+      "gia": 185.2,
       "gia_cc": null,
-      "heat": 6302.0,
-      "cycle": 50,
-      "views_tin": 10.2,
+      "heat": 6015.0,
+      "cycle": 90,
+      "views_tin": 10.0,
       "delta": null,
       "delta_tin": null,
       "delta_gia": null,
-      "yoy": 0,
-      "cat_lo": 10.0,
-      "tin": 1867.0,
-      "views": 19082.0,
-      "potential": 64.2
-    },
-    {
-      "name": "Long Biên",
-      "gia": 250.7,
-      "gia_cc": null,
-      "heat": 12275.0,
-      "cycle": 50,
-      "views_tin": 9.8,
-      "delta": null,
-      "delta_tin": null,
-      "delta_gia": null,
-      "yoy": 0,
-      "cat_lo": 6.7,
-      "tin": 3858.0,
-      "views": 37691.0,
-      "potential": 55.1
+      "yoy": 105.9,
+      "cat_lo": 11.7,
+      "tin": 1813.5,
+      "views": 18175.0,
+      "potential": 70.9
     },
     {
       "name": "Thanh Trì",
-      "gia": 130.9,
+      "gia": 132.9,
       "gia_cc": null,
-      "heat": 3973.0,
-      "cycle": 86,
+      "heat": 3737.0,
+      "cycle": 90,
       "views_tin": 9.7,
       "delta": null,
       "delta_tin": null,
       "delta_gia": null,
-      "yoy": 46.0,
-      "cat_lo": 26.7,
-      "tin": 1214.0,
-      "views": 11786.0,
-      "potential": 58.5
+      "yoy": 62.0,
+      "cat_lo": 18.3,
+      "tin": 1144.0,
+      "views": 11047.0,
+      "potential": 70.2
+    },
+    {
+      "name": "Long Biên",
+      "gia": 222.9,
+      "gia_cc": null,
+      "heat": 11816.0,
+      "cycle": 90,
+      "views_tin": 9.1,
+      "delta": null,
+      "delta_tin": null,
+      "delta_gia": null,
+      "yoy": 76.3,
+      "cat_lo": 6.7,
+      "tin": 3951.0,
+      "views": 36147.0,
+      "potential": 66.3
     },
     {
       "name": "Thanh Xuân",
-      "gia": 161.6,
+      "gia": 141.0,
       "gia_cc": null,
-      "heat": 7896.0,
-      "cycle": 50,
-      "views_tin": 6.9,
+      "heat": 7972.0,
+      "cycle": 90,
+      "views_tin": 7.0,
       "delta": null,
       "delta_tin": null,
       "delta_gia": null,
-      "yoy": 0,
-      "cat_lo": 23.3,
-      "tin": 3403.0,
-      "views": 23593.0,
-      "potential": 42.0
+      "yoy": 92.0,
+      "cat_lo": 13.3,
+      "tin": 3395.5,
+      "views": 23843.5,
+      "potential": 63.3
     },
     {
       "name": "Bắc Từ Liêm",
-      "gia": 122.8,
+      "gia": 111.9,
       "gia_cc": null,
-      "heat": 5621.0,
-      "cycle": 50,
+      "heat": 5727.0,
+      "cycle": 90,
       "views_tin": 6.9,
       "delta": null,
       "delta_tin": null,
       "delta_gia": null,
-      "yoy": 0,
-      "cat_lo": 26.7,
-      "tin": 2420.0,
-      "views": 16663.0,
-      "potential": 47.1
+      "yoy": 100.5,
+      "cat_lo": 20.0,
+      "tin": 2455.0,
+      "views": 16992.0,
+      "potential": 58.2
     },
     {
       "name": "Hoài Đức",
-      "gia": 146.2,
+      "gia": 113.8,
       "gia_cc": null,
-      "heat": 5699.0,
+      "heat": 5429.0,
       "cycle": 90,
       "views_tin": 6.4,
       "delta": null,
       "delta_tin": null,
       "delta_gia": null,
-      "yoy": 56.0,
-      "cat_lo": 0,
-      "tin": 2618.0,
-      "views": 16824.0,
-      "potential": 72.5
+      "yoy": 66.0,
+      "cat_lo": 10.0,
+      "tin": 2518.0,
+      "views": 15992.5,
+      "potential": 71.9
     },
     {
-      "name": "Hoàng Mai",
-      "gia": 232.9,
+      "name": "Cầu Giấy",
+      "gia": 135.4,
       "gia_cc": null,
-      "heat": 8164.0,
+      "heat": 10328.0,
       "cycle": 90,
       "views_tin": 6.3,
       "delta": null,
       "delta_tin": null,
       "delta_gia": null,
-      "yoy": 50.0,
-      "cat_lo": 0,
-      "tin": 3845.0,
-      "views": 24230.0,
-      "potential": 51.1
+      "yoy": 126.5,
+      "cat_lo": 23.3,
+      "tin": 4909.0,
+      "views": 30734.0,
+      "potential": 44.4
+    },
+    {
+      "name": "Hoàng Mai",
+      "gia": 167.8,
+      "gia_cc": null,
+      "heat": 8118.0,
+      "cycle": 90,
+      "views_tin": 6.2,
+      "delta": null,
+      "delta_tin": null,
+      "delta_gia": null,
+      "yoy": 68.0,
+      "cat_lo": 6.7,
+      "tin": 3856.0,
+      "views": 24076.5,
+      "potential": 64.3
+    },
+    {
+      "name": "Hà Đông",
+      "gia": 118.5,
+      "gia_cc": null,
+      "heat": 11547.0,
+      "cycle": 90,
+      "views_tin": 5.9,
+      "delta": null,
+      "delta_tin": null,
+      "delta_gia": null,
+      "yoy": 79.7,
+      "cat_lo": 20.0,
+      "tin": 5774.0,
+      "views": 34246.0,
+      "potential": 51.7
     },
     {
       "name": "Tây Hồ",
-      "gia": 261.0,
+      "gia": 231.9,
       "gia_cc": null,
-      "heat": 5618.0,
-      "cycle": 50,
+      "heat": 5689.0,
+      "cycle": 90,
       "views_tin": 5.5,
       "delta": null,
       "delta_tin": null,
       "delta_gia": null,
-      "yoy": 0,
-      "cat_lo": 10.0,
-      "tin": 2971.0,
-      "views": 16378.0,
-      "potential": 28.0
+      "yoy": 155.1,
+      "cat_lo": 6.7,
+      "tin": 3032.0,
+      "views": 16577.0,
+      "potential": 46.4
     },
     {
       "name": "Gia Lâm",
-      "gia": 130.7,
+      "gia": 102.0,
       "gia_cc": null,
-      "heat": 3624.0,
-      "cycle": 50,
-      "views_tin": 5.0,
+      "heat": 3396.0,
+      "cycle": 90,
+      "views_tin": 4.6,
       "delta": null,
       "delta_tin": null,
       "delta_gia": null,
-      "yoy": 0,
-      "cat_lo": 16.7,
-      "tin": 2058.0,
-      "views": 10373.0,
-      "potential": 48.7
+      "yoy": 71.0,
+      "cat_lo": 23.3,
+      "tin": 2100.0,
+      "views": 9612.0,
+      "potential": 43.5
     },
     {
       "name": "Nam Từ Liêm",
-      "gia": 133.8,
+      "gia": 152.9,
       "gia_cc": null,
-      "heat": 6634.0,
-      "cycle": 75,
-      "views_tin": 4.0,
+      "heat": 6684.0,
+      "cycle": 90,
+      "views_tin": 3.9,
       "delta": null,
       "delta_tin": null,
       "delta_gia": null,
-      "yoy": 35.0,
-      "cat_lo": 20.0,
-      "tin": 4694.0,
-      "views": 18718.0,
-      "potential": 39.0
+      "yoy": 63.5,
+      "cat_lo": 18.3,
+      "tin": 4804.5,
+      "views": 18818.0,
+      "potential": 36.9
+    },
+    {
+      "name": "Đan Phượng",
+      "gia": 160.2,
+      "gia_cc": null,
+      "heat": 1021.0,
+      "cycle": 90,
+      "views_tin": 3.7,
+      "delta": null,
+      "delta_tin": null,
+      "delta_gia": null,
+      "yoy": 56.4,
+      "cat_lo": 23.3,
+      "tin": 721.0,
+      "views": 2676.0,
+      "potential": 25.9
     }
   ],
-  "history": {}
+  "history": {
+    "Nam Từ Liêm": {
+      "labels": [
+        "2026-04-09"
+      ],
+      "gia": [
+        152.9
+      ],
+      "gia_cc": [
+        null
+      ],
+      "tin": [
+        4804.0
+      ],
+      "views_tin": [
+        3.9
+      ]
+    },
+    "Hoàng Mai": {
+      "labels": [
+        "2026-04-09"
+      ],
+      "gia": [
+        167.8
+      ],
+      "gia_cc": [
+        null
+      ],
+      "tin": [
+        3856.0
+      ],
+      "views_tin": [
+        6.2
+      ]
+    },
+    "Thanh Xuân": {
+      "labels": [
+        "2026-04-09"
+      ],
+      "gia": [
+        141.0
+      ],
+      "gia_cc": [
+        null
+      ],
+      "tin": [
+        3396.0
+      ],
+      "views_tin": [
+        7.0
+      ]
+    },
+    "Tây Hồ": {
+      "labels": [
+        "2026-04-09"
+      ],
+      "gia": [
+        231.9
+      ],
+      "gia_cc": [
+        null
+      ],
+      "tin": [
+        3032.0
+      ],
+      "views_tin": [
+        5.5
+      ]
+    },
+    "Bắc Từ Liêm": {
+      "labels": [
+        "2026-04-09"
+      ],
+      "gia": [
+        111.9
+      ],
+      "gia_cc": [
+        null
+      ],
+      "tin": [
+        2455.0
+      ],
+      "views_tin": [
+        6.9
+      ]
+    },
+    "Gia Lâm": {
+      "labels": [
+        "2026-04-09"
+      ],
+      "gia": [
+        102.0
+      ],
+      "gia_cc": [
+        null
+      ],
+      "tin": [
+        2100.0
+      ],
+      "views_tin": [
+        4.6
+      ]
+    },
+    "Long Biên": {
+      "labels": [
+        "2026-04-09"
+      ],
+      "gia": [
+        222.9
+      ],
+      "gia_cc": [
+        null
+      ],
+      "tin": [
+        3951.0
+      ],
+      "views_tin": [
+        9.1
+      ]
+    },
+    "Hoài Đức": {
+      "labels": [
+        "2026-04-09"
+      ],
+      "gia": [
+        113.8
+      ],
+      "gia_cc": [
+        null
+      ],
+      "tin": [
+        2518.0
+      ],
+      "views_tin": [
+        6.4
+      ]
+    },
+    "Đống Đa": {
+      "labels": [
+        "2026-04-09"
+      ],
+      "gia": [
+        250.1
+      ],
+      "gia_cc": [
+        null
+      ],
+      "tin": [
+        3234.0
+      ],
+      "views_tin": [
+        10.1
+      ]
+    },
+    "Hai Bà Trưng": {
+      "labels": [
+        "2026-04-09"
+      ],
+      "gia": [
+        137.7
+      ],
+      "gia_cc": [
+        null
+      ],
+      "tin": [
+        2246.0
+      ],
+      "views_tin": [
+        10.4
+      ]
+    },
+    "Thanh Trì": {
+      "labels": [
+        "2026-04-09"
+      ],
+      "gia": [
+        132.9
+      ],
+      "gia_cc": [
+        null
+      ],
+      "tin": [
+        1144.0
+      ],
+      "views_tin": [
+        9.7
+      ]
+    },
+    "Ba Đình": {
+      "labels": [
+        "2026-04-09"
+      ],
+      "gia": [
+        232.4
+      ],
+      "gia_cc": [
+        null
+      ],
+      "tin": [
+        2130.0
+      ],
+      "views_tin": [
+        10.3
+      ]
+    },
+    "Đông Anh": {
+      "labels": [
+        "2026-04-09"
+      ],
+      "gia": [
+        185.2
+      ],
+      "gia_cc": [
+        null
+      ],
+      "tin": [
+        1814.0
+      ],
+      "views_tin": [
+        10.0
+      ]
+    },
+    "Cầu Giấy": {
+      "labels": [
+        "2026-04-09"
+      ],
+      "gia": [
+        135.4
+      ],
+      "gia_cc": [
+        null
+      ],
+      "tin": [
+        4909.0
+      ],
+      "views_tin": [
+        6.3
+      ]
+    },
+    "Hà Đông": {
+      "labels": [
+        "2026-04-09"
+      ],
+      "gia": [
+        118.5
+      ],
+      "gia_cc": [
+        null
+      ],
+      "tin": [
+        5774.0
+      ],
+      "views_tin": [
+        5.9
+      ]
+    },
+    "Đan Phượng": {
+      "labels": [
+        "2026-04-09"
+      ],
+      "gia": [
+        160.2
+      ],
+      "gia_cc": [
+        null
+      ],
+      "tin": [
+        721.0
+      ],
+      "views_tin": [
+        3.7
+      ]
+    }
+  }
 }

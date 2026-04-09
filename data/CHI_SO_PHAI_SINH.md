@@ -1,6 +1,6 @@
 # 🔥 CHỈ SỐ PHÁI SINH THỊ TRƯỜNG — BĐS HÀ NỘI
 
-> **Ngày tính:** 09/04/2026 19:40
+> **Ngày tính:** 09/04/2026 19:41
 > **Dữ liệu crawl:** batdongsan.com.vn | **Config (Views/YoY):** 2026-03-11
 > **Benchmark:** Nam Từ Liêm
 
@@ -10,22 +10,22 @@
 
 | # | Khu vực | Tổng tin | Tổng views | Views/Tin | Cycle | Giai đoạn | Heat | MFV | Cung-Cầu | Giá gap | MFSI | Giá (tr/m²) |
 |:-:|---------|:-------:|:----------:|:---------:|:-----:|-----------|:----:|:---:|:--------:|:-------:|:----:|:-----------:|
-| 1 | **Long Biên** | 3,858 | 37,808 | 9.8 | 🟢 71 | ☀️ MÙA HÈ (đang tăng) | **828** | 484 | 1.96 🔥 Cầu >> Cung | +36% | 35.0 | 250.7 |
-| 2 | **Hoàng Mai** | 3,845 | 24,224 | 6.3 | 🟢 76 | ☀️ MÙA HÈ (đang tăng) | **735** | 351 | 1.26 ✅ Cầu > Cung | +26% | 36.5 | 232.9 |
-| 3 | **Đống Đa** | 3,179 | 32,744 | 10.3 | 🟡 56 | 🌱 MÙA XUÂN (bắt đầu) | **704** | 352 | 2.06 🔥 Cầu >> Cung | +29% | 32.0 | 237.6 |
-| 4 | **Đông Anh** | 1,867 | 19,043 | 10.2 | 🟢 77 | ☀️ MÙA HÈ (đang tăng) | **695** | 252 | 2.04 🔥 Cầu >> Cung | +10% | 42.0 | 203.7 |
-| 5 | **Ba Đình** | 2,165 | 23,815 | 11.0 | 🟡 56 | 🌱 MÙA XUÂN (bắt đầu) | **620** | 252 | 2.20 🔥 Cầu >> Cung | +29% | 32.0 | 238.3 |
-| 6 | **Thanh Trì** | 1,214 | 11,776 | 9.7 | 🟢 72 | ☀️ MÙA HÈ (đang tăng) | **609** | 170 | 1.94 🔥 Cầu >> Cung | -29% | 66.5 | 130.9 |
-| 7 | **Hai Bà Trưng** | 2,266 | 23,793 | 10.5 | 🟡 56 | 🌱 MÙA XUÂN (bắt đầu) | **606** | 257 | 2.10 🔥 Cầu >> Cung | -17% | 67.0 | 153.5 |
-| 8 | **Hoài Đức** | 2,618 | 16,755 | 6.4 | 🟢 77 | ☀️ MÙA HÈ (đang tăng) | **579** | 224 | 1.28 ✅ Cầu > Cung | -21% | 71.6 | 146.2 |
-| 9 | **Thanh Xuân** | 3,403 | 23,481 | 6.9 | 🟡 51 | 🌱 MÙA XUÂN (bắt đầu) | **507** | 258 | 1.38 ✅ Cầu > Cung | -13% | 52.4 | 161.6 |
-| 10 | **Bắc Từ Liêm** | 2,420 | 16,698 | 6.9 | 🟡 51 | 🌱 MÙA XUÂN (bắt đầu) | **456** | 192 | 1.38 ✅ Cầu > Cung | -34% | 72.3 | 122.8 |
-| 11 | **Tây Hồ** | 2,971 | 16,340 | 5.5 | 🟡 42 | 🌱 MÙA XUÂN (bắt đầu) | **401** | 177 | 1.10 ✅ Cầu > Cung | +41% | 25.2 | 261.0 |
-| 12 | **Nam Từ Liêm** | 4,694 | 18,776 | 4.0 | 🟡 39 | 🌱 MÙA XUÂN (bắt đầu) | **375** | 211 | 0.80 🟡 Cân bằng | -28% | 58.0 | 133.8 |
-| 13 | **Gia Lâm** | 2,058 | 10,290 | 5.0 | 🟡 48 | 🌱 MÙA XUÂN (bắt đầu) | **358** | 126 | 1.00 ✅ Cầu > Cung | -29% | 59.5 | 130.7 |
-| 14 | **Đan Phượng** | 1 | 3 | 2.8 | 🟢 62 | ☀️ MÙA HÈ (đang tăng) | **289** | 0 | 0.56 ❌ Cung > Cầu | — | 51.2 | 0.0 |
-| 15 | **Hà Đông** | 1 | 5 | 5.2 | 🟢 62 | ☀️ MÙA HÈ (đang tăng) | **270** | 0 | 1.04 ✅ Cầu > Cung | — | 54.8 | 0.0 |
-| 16 | **Cầu Giấy** | 1 | 5 | 5.0 | 🟡 54 | 🌱 MÙA XUÂN (bắt đầu) | **237** | 0 | 1.00 ✅ Cầu > Cung | — | 54.5 | 0.0 |
+| 1 | **Long Biên** | 4,044 | 34,778 | 8.6 | 🟢 66 | ☀️ MÙA HÈ (đang tăng) | **790** | 445 | 1.72 🔥 Cầu >> Cung | +31% | 33.2 | 195.2 |
+| 2 | **Hoàng Mai** | 3,867 | 23,975 | 6.2 | 🟢 62 | ☀️ MÙA HÈ (đang tăng) | **712** | 347 | 1.24 ✅ Cầu > Cung | -31% | 74.6 | 102.7 |
+| 3 | **Đống Đa** | 3,288 | 32,880 | 10.0 | 🟡 56 | 🌱 MÙA XUÂN (bắt đầu) | **693** | 354 | 2.00 🔥 Cầu >> Cung | +77% | 32.0 | 262.5 |
+| 4 | **Đông Anh** | 1,760 | 17,248 | 9.8 | 🟢 72 | ☀️ MÙA HÈ (đang tăng) | **653** | 228 | 1.96 🔥 Cầu >> Cung | +12% | 41.7 | 166.7 |
+| 5 | **Hà Đông** | 5,774 | 34,067 | 5.9 | 🟡 47 | 🌱 MÙA XUÂN (bắt đầu) | **642** | 403 | 1.18 ✅ Cầu > Cung | -20% | 60.9 | 118.5 |
+| 6 | **Thanh Trì** | 1,074 | 10,310 | 9.6 | 🟢 75 | ☀️ MÙA HÈ (đang tăng) | **610** | 149 | 1.92 🔥 Cầu >> Cung | -9% | 56.4 | 135.0 |
+| 7 | **Hai Bà Trưng** | 2,226 | 22,928 | 10.3 | 🟡 56 | 🌱 MÙA XUÂN (bắt đầu) | **593** | 248 | 2.06 🔥 Cầu >> Cung | -18% | 67.0 | 121.8 |
+| 8 | **Cầu Giấy** | 4,909 | 30,927 | 6.3 | 🟡 41 | 🌱 MÙA XUÂN (bắt đầu) | **567** | 339 | 1.26 ✅ Cầu > Cung | -9% | 51.5 | 135.4 |
+| 9 | **Thanh Xuân** | 3,388 | 24,055 | 7.1 | 🟢 61 | ☀️ MÙA HÈ (đang tăng) | **561** | 265 | 1.42 ✅ Cầu > Cung | -19% | 69.3 | 120.4 |
+| 10 | **Hoài Đức** | 2,418 | 15,233 | 6.3 | 🟢 62 | ☀️ MÙA HÈ (đang tăng) | **531** | 204 | 1.26 ✅ Cầu > Cung | -45% | 71.5 | 81.4 |
+| 11 | **Ba Đình** | 2,096 | 19,912 | 9.5 | 🟡 54 | 🌱 MÙA XUÂN (bắt đầu) | **530** | 211 | 1.90 🔥 Cầu >> Cung | +53% | 31.2 | 226.4 |
+| 12 | **Bắc Từ Liêm** | 2,490 | 17,430 | 7.0 | 🟡 51 | 🌱 MÙA XUÂN (bắt đầu) | **484** | 200 | 1.40 ✅ Cầu > Cung | -32% | 72.5 | 101.0 |
+| 13 | **Tây Hồ** | 3,093 | 16,702 | 5.4 | 🟡 48 | 🌱 MÙA XUÂN (bắt đầu) | **418** | 181 | 1.08 ✅ Cầu > Cung | +37% | 31.8 | 202.8 |
+| 14 | **Nam Từ Liêm** | 4,915 | 18,677 | 3.8 | 🟡 38 | 🌱 MÙA XUÂN (bắt đầu) | **376** | 210 | 0.76 🟡 Cân bằng | +16% | 22.7 | 172.0 |
+| 15 | **Đan Phượng** | 721 | 2,668 | 3.7 | 🟡 48 | 🌱 MÙA XUÂN (bắt đầu) | **307** | 40 | 0.74 🟡 Cân bằng | +8% | 32.5 | 160.2 |
+| 16 | **Gia Lâm** | 2,142 | 8,782 | 4.1 | 🟡 44 | 🌱 MÙA XUÂN (bắt đầu) | **303** | 107 | 0.82 🟡 Cân bằng | -51% | 68.2 | 73.3 |
 
 ---
 
@@ -33,53 +33,53 @@
 
 | Khu vực | Đèn | Cycle | MFSI | Khuyến nghị |
 |---------|:----:|:-----:|:----:|-------------|
-| **Long Biên** | 🟡 | 71 | 35.0 | CÂN NHẮC — tăng nhưng dòng tiền yếu |
-| **Hoàng Mai** | 🟡 | 76 | 36.5 | CÂN NHẮC — tăng nhưng dòng tiền yếu |
+| **Long Biên** | 🟡 | 66 | 33.2 | CÂN NHẮC — tăng nhưng dòng tiền yếu |
+| **Hoàng Mai** | 🟢 | 62 | 74.6 | CƠ HỘI — đang tăng, dòng tiền vào |
 | **Đống Đa** | ⚫→🟢 | 56 | 32.0 | SỚM — cần kiên nhẫn 3-5 năm |
-| **Đông Anh** | 🟡 | 77 | 42.0 | CÂN NHẮC — tăng nhưng dòng tiền yếu |
-| **Ba Đình** | ⚫→🟢 | 56 | 32.0 | SỚM — cần kiên nhẫn 3-5 năm |
-| **Thanh Trì** | 🟢 | 72 | 66.5 | CƠ HỘI — đang tăng, dòng tiền vào |
+| **Đông Anh** | 🟡 | 72 | 41.7 | CÂN NHẮC — tăng nhưng dòng tiền yếu |
+| **Hà Đông** | ⚫→🟢 | 47 | 60.9 | SỚM — cần kiên nhẫn 3-5 năm |
+| **Thanh Trì** | 🟢 | 75 | 56.4 | CƠ HỘI — đang tăng, dòng tiền vào |
 | **Hai Bà Trưng** | ⚫→🟢 | 56 | 67.0 | SỚM — cần kiên nhẫn 3-5 năm |
-| **Hoài Đức** | 🟢 | 77 | 71.6 | CƠ HỘI — đang tăng, dòng tiền vào |
-| **Thanh Xuân** | ⚫→🟢 | 51 | 52.4 | SỚM — cần kiên nhẫn 3-5 năm |
-| **Bắc Từ Liêm** | ⚫→🟢 | 51 | 72.3 | SỚM — cần kiên nhẫn 3-5 năm |
-| **Tây Hồ** | ⚫→🟢 | 42 | 25.2 | SỚM — cần kiên nhẫn 3-5 năm |
-| **Nam Từ Liêm** | ⚫→🟢 | 39 | 58.0 | SỚM — cần kiên nhẫn 3-5 năm |
-| **Gia Lâm** | ⚫→🟢 | 48 | 59.5 | SỚM — cần kiên nhẫn 3-5 năm |
-| **Đan Phượng** | 🟢 | 62 | 51.2 | CƠ HỘI — đang tăng, dòng tiền vào |
-| **Hà Đông** | 🟢 | 62 | 54.8 | CƠ HỘI — đang tăng, dòng tiền vào |
-| **Cầu Giấy** | ⚫→🟢 | 54 | 54.5 | SỚM — cần kiên nhẫn 3-5 năm |
+| **Cầu Giấy** | ⚫→🟢 | 41 | 51.5 | SỚM — cần kiên nhẫn 3-5 năm |
+| **Thanh Xuân** | 🟢 | 61 | 69.3 | CƠ HỘI — đang tăng, dòng tiền vào |
+| **Hoài Đức** | 🟢 | 62 | 71.5 | CƠ HỘI — đang tăng, dòng tiền vào |
+| **Ba Đình** | ⚫→🟢 | 54 | 31.2 | SỚM — cần kiên nhẫn 3-5 năm |
+| **Bắc Từ Liêm** | ⚫→🟢 | 51 | 72.5 | SỚM — cần kiên nhẫn 3-5 năm |
+| **Tây Hồ** | ⚫→🟢 | 48 | 31.8 | SỚM — cần kiên nhẫn 3-5 năm |
+| **Nam Từ Liêm** | ⚫→🟢 | 38 | 22.7 | SỚM — cần kiên nhẫn 3-5 năm |
+| **Đan Phượng** | ⚫→🟢 | 48 | 32.5 | SỚM — cần kiên nhẫn 3-5 năm |
+| **Gia Lâm** | ⚫→🟢 | 44 | 68.2 | SỚM — cần kiên nhẫn 3-5 năm |
 
 ---
 
 ## III. TOP 3 KHU VỰC HẤP DẪN NHẤT
 
-### 1. Long Biên — Heat Score 828
+### 1. Long Biên — Heat Score 790
 
-- **Cycle:** 71 (☀️ MÙA HÈ (đang tăng))
-- **Tổng tin:** 3,858 | **Tổng views:** 37,808 | **Views/Tin:** 9.8
-- **MFV:** 484
-- **Giá:** 250.7 tr/m² | **Gap vs Nam Từ Liêm:** 36%
-- **Cung-Cầu:** 1.96 (🔥 Cầu >> Cung)
+- **Cycle:** 66 (☀️ MÙA HÈ (đang tăng))
+- **Tổng tin:** 4,044 | **Tổng views:** 34,778 | **Views/Tin:** 8.6
+- **MFV:** 445
+- **Giá:** 195.2 tr/m² | **Gap vs Nam Từ Liêm:** 31%
+- **Cung-Cầu:** 1.72 (🔥 Cầu >> Cung)
 - **Cắt lỗ:** 6.7% | **Yield:** 0.00%
 
-### 2. Hoàng Mai — Heat Score 735
+### 2. Hoàng Mai — Heat Score 712
 
-- **Cycle:** 76 (☀️ MÙA HÈ (đang tăng))
-- **Tổng tin:** 3,845 | **Tổng views:** 24,224 | **Views/Tin:** 6.3
-- **MFV:** 351
-- **Giá:** 232.9 tr/m² | **Gap vs Nam Từ Liêm:** 26%
-- **Cung-Cầu:** 1.26 (✅ Cầu > Cung)
-- **Cắt lỗ:** 0.0% | **Yield:** 0.00%
+- **Cycle:** 62 (☀️ MÙA HÈ (đang tăng))
+- **Tổng tin:** 3,867 | **Tổng views:** 23,975 | **Views/Tin:** 6.2
+- **MFV:** 347
+- **Giá:** 102.7 tr/m² | **Gap vs Nam Từ Liêm:** -31%
+- **Cung-Cầu:** 1.24 (✅ Cầu > Cung)
+- **Cắt lỗ:** 6.7% | **Yield:** 0.00%
 
-### 3. Đống Đa — Heat Score 704
+### 3. Đống Đa — Heat Score 693
 
 - **Cycle:** 56 (🌱 MÙA XUÂN (bắt đầu))
-- **Tổng tin:** 3,179 | **Tổng views:** 32,744 | **Views/Tin:** 10.3
-- **MFV:** 352
-- **Giá:** 237.6 tr/m² | **Gap vs Nam Từ Liêm:** 29%
-- **Cung-Cầu:** 2.06 (🔥 Cầu >> Cung)
-- **Cắt lỗ:** 16.7% | **Yield:** 0.00%
+- **Tổng tin:** 3,288 | **Tổng views:** 32,880 | **Views/Tin:** 10.0
+- **MFV:** 354
+- **Giá:** 262.5 tr/m² | **Gap vs Nam Từ Liêm:** 77%
+- **Cung-Cầu:** 2.00 (🔥 Cầu >> Cung)
+- **Cắt lỗ:** 20.0% | **Yield:** 0.00%
 
 ---
 
@@ -99,4 +99,4 @@
 
 ---
 
-📅 **Tính lúc:** 09/04/2026 19:40 | 🤖 **Script:** tinh_chi_so_phai_sinh.py
+📅 **Tính lúc:** 09/04/2026 19:41 | 🤖 **Script:** tinh_chi_so_phai_sinh.py
