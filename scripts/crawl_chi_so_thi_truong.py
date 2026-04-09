@@ -70,7 +70,7 @@ KHU_VUC = {
     "Đan Phượng":    "dan-phuong",        #    68 tin
 }
 
-URL_BAN      = "https://batdongsan.com.vn/nha-dat-ban-{slug}"
+URL_BAN      = "https://batdongsan.com.vn/ban-nha-rieng-{slug}"
 URL_CHUNG_CU = "https://batdongsan.com.vn/ban-can-ho-chung-cu-{slug}"
 URL_BIET_THU = "https://batdongsan.com.vn/ban-biet-thu-lien-ke-{slug}"
 
